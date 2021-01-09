@@ -79,4 +79,21 @@ git
 		git stash pop 恢复工作现场
 				
 	github使用：
-		
+		1.在github上创建仓库
+		2.创建ssh公钥，把公钥添加到github账号里
+		3.ssh-keyfen -t rea -C '邮箱地址'
+		4.进入主目录下的.ssh文件夹
+		5.id_rea是私钥，id_rea.pub是公钥
+		6 公钥放入githubgit 
+
+		上传
+		branch -M main （给分支改名) 
+		git remote add origin git@github.com:yujingjingwudi/python_0_to_1.git  
+
+		git push -u origin main main是本地分支,origin指远程
+
+		跟踪分支：
+		git branch --set-upstream-to=origin/远程分支名字 本地分支名字
+
+		从远程拉取代码
+		git pull orgin 分支名称
