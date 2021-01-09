@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.tanchaung{
+		margin: 50px auto;
+		height: 200px;
+		width: 300px;
+		background-color: cyan;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -150px;
+		margin-top: -100px;
+		z-index: 999;
+		border: 3px solid black;
+	}
+	.box_con{
+		display: none;
+	}
+	.mask{
+		z-index: 99;
+		height: 100%;
+		width: 100%;
+		/*background-color: grey;*/
+		opacity: 0.3
+		position: fixed;
+		left: 0;
+		top: 0;
+	}
+	.close{
+		float:right;
+		color: blue;
+		font-size: 25px;
+		text-decoration: none;
+	}
+	.close:hover{
+		color:yellow;
+	}
+</style>
+<script  src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#btn').click(function(event) {
+			/* Act on the event */
+			$('.box_con').fadeIn();
+			return false;  				 
+		});
+		$(document).click(function(event) {
+		/* Act on the event */
+			$('.box_con').fadeOut();
+		});
+
+			$('.tanchaung').click(function(event) {
+						/* Act on the event */
+					return false;
+		});
+		$('.close').click(function(event) {
+			/* Act on the event */
+			$('.box_con').fadeOut();
+		});
+	})
+	
+</script>
+<body>
+	<input type="button" id="btn" name="" value="弹窗">
+	<div class="box_con">
+		<div class="tanchaung">投资金额 
+			<input type="text" name="">
+			<a href="#" class="close">x</a>
+		</div>
+		<div class="mask">niao</div>
+	</div>
+</body>
+</html>

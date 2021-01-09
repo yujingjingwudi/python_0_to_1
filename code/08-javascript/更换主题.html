@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="toolcss1.css" id="link1">
+	<script type="text/javascript">
+		var obj1 = document.getElementById('link1');
+		window.onload = function(){
+			var oinput1 = document.getElementById('input1');
+			var oinput2 = document.getElementById('input2');
+			oinput1.onclick = function(){
+				obj1.href = 'toolcss1.css';
+			}
+			oinput2.onclick = function(){
+				obj1.href = 'toolcss2.css';
+			}   
+		}
+	</script>
+</head>
+<body>
+	<input type="submit"  id="input1" />
+	<input type="submit" id="input2" />
+</body>
+</html>

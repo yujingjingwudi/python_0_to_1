@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn01').click(function(event) {
+				/* Act on the event */
+				$('#model04').modal({
+					show:true,
+					backdrop:'static'
+				})
+			});
+
+			$('#btn02').click(function(event) {
+				/* Act on the event */
+				$('#model04').modal('hide');
+			});
+		})
+	</script>
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<button class="btn btn-primary" data-toggle="modal" data-target=#model01>弹出大尺寸模态框</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target=#model02>弹出一般尺寸模态框</button>
+			<button class="btn btn-primary" data-toggle="modal" data-target=#model03>弹出小尺寸模态框</button>
+			<button class="btn btn-primary" id="btn01">js控制的模态框</button>
+		</div>
+	</div>
+	<div class="modal" id="model01">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">提醒</div>
+				<div class="modal-body">这是模态框的body</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">确认</button>
+					<button class="btn btn-danger" data-dismiss="modal">退出</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="model02">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">提醒</div>
+				<div class="modal-body">这是模态框的body</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">确认</button>
+					<button class="btn btn-danger" data-dismiss="modal">退出</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="model03">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">提醒</div>
+				<div class="modal-body">这是模态框的body</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">确认</button>
+					<button class="btn btn-danger" data-dismiss="modal">退出</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" id="model04">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">提醒</div>
+				<div class="modal-body">这是模态框的body</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">确认</button>
+					<button class="btn btn-danger" id="btn02">退出</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

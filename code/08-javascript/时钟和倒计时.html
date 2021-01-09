@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.box,.daojishi{
+			text-align: center;
+			position: relative;
+			/*left: 50%;*/
+			color: pink;
+			font-size: 30px;
+			margin:10px;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){	
+
+			function timer(){
+				oDiv = document.getElementById('timer1');
+				sNowtime = new Date();
+			// alert(sNowtime);
+				sYear = sNowtime.getFullYear();
+				smonth = sNowtime.getMonth()+1;
+				sday = sNowtime.getDate();
+				sweek = sNowtime.getDay();
+				sHours = sNowtime.getHours();
+				sMinutes = sNowtime.getMinutes();
+				sSecords = sNowtime.getSeconds();
+				sTr = '当前时间：' + sYear + '年' + smonth + '月' + sday +'日 '+ fnToWeek(sweek) + ' ' + fnToDouble(sHours)+':'+ fnToDouble(sMinutes)+':'+  fnToDouble(sSecords);
+				oDiv.innerHTML = sTr;
+
+				//倒计时模块
+				oDaojishi = document.getElementById('timer2');
+				tEndtime = new Date(2020,10,30,24,0,0);
+				sLeft = parseInt((tEndtime - sNowtime)/1000);	
+				SLday = parseInt(sLeft/86400);
+				SLHours = parseInt(sLeft%86400/3600);
+				SLMinute = parseInt(sLeft%3600/60);
+				SLSecords = parseInt(sLeft%60+1);
+				sTr1 = '距离12月1日还剩：' + SLday + '天' + fnToDouble(SLHours) + ':' + fnToDouble(SLMinute) + ':' + fnToDouble(SLSecords);
+				oDaojishi.innerHTML = sTr1;
+				// alert(sLeft);
+
+
+			}
+
+			function fnToDouble(n){
+				if (n<10){
+					return '0'+n;
+				}
+				else
+					return n;
+			}
+
+			function fnToWeek(n){
+				switch(n){
+					case(0):return '星期天';break;
+				}
+				switch(n){
+					case(1):return '星期一';break;
+				}
+				switch(n){
+					case(2):return '星期二';break;
+				}
+				switch(n){
+					case(3):return '星期三';break;
+				}
+				switch(n){
+					case(4):return '星期四';break;
+				}
+				switch(n){
+					case(5):return '星期五';break;
+				}
+				switch(n){
+					case(6):return '星期六';break;
+				}
+			}
+			timer();
+			var timers = setInterval(timer,100);
+
+		}
+	</script>
+</head>
+<body>
+	<div class="box" id="timer1"></div>	
+	<div class="daojishi" id="timer2"></div>
+</body>
+</html>
+
+

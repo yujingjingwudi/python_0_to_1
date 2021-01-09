@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+        .Box{
+            background-color: cyan;
+            /*margin:50px auto;   */
+            height:200px;
+            width: 200px;
+            color: cyan;
+            transition:width 500ms ease 500ms,height 500ms ease 0ms,background-color 1s ease 0s;
+            /*transition:all 500ms ease 2s;*/
+            /*在延时时长相同的时候，可以使用transition：all*/
+        }
+
+        .Box:hover{
+            background-color: pink;
+            width:400px;
+            height:600px;
+        }
+
+        .box:hover{
+
+        }
+
+        .box{
+            margin:50px auto;
+            height:300px;
+            width:200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .box2{
+            height:100px;
+            width:200px;
+            background-color: rgba(0,0,0,0.3);
+            position: absolute;
+            top:300px;
+            left:0;
+            color:white;
+            transition: top 500ms ease;
+        }
+        .box h4{
+            margin-top:10px;
+            margin-bottom:10px;
+            padding:0 10px 0;
+        }
+        .box p{
+            margin: 0;
+            padding:0 10px 0;
+        }
+        .box:hover .box2{
+            top:200px
+        }
+
+    </style>
+</head>
+<body>
+    <div class="Box"></div>
+
+    <div class="box">
+        <img src="goods.jpg">
+        <div class="box2">
+            <h4>这是一个说明</h4>
+            <p>这是一个说明，这是一个说明，这是一个说明</p>
+        </div>
+    </div>
+</body>
+</html>

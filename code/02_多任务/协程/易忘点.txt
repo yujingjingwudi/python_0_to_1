@@ -1,0 +1,30 @@
+1. 迭代器：迭代是访问集合元素的一种方式，迭代器是一个可以记住遍历位置的对象
+2. 判断一个对象能否迭代：isinstance方法
+   isinstance(a,B):a是不是B种出来的
+   例如isinstance((11,22,33,Iterable))
+3. 自己写的类如果需要可迭代的话，需要实现__iter__方法
+4. 判断一个类能否迭代的话，看类中是否实现了__iter__方法，判断该类能否被for循环，则需要__iter__返回一个类的引用，而且该类得实现
+   __iter__方法和__next__,__next__方法有返回值,返回的这个类被称为迭代器
+5. 一个类的迭代器可以是自己本身，但需要实现__next__方法
+6. iter(A)返回的是A的迭代器
+7. 用处：当数据量十分庞大时，如：range(100000000000000),则会消耗特别大的空间，采用生成器方式生成可以节约大量空间
+   python2中，range返回的是一个列表，Xrange返回的是一个可迭代对象，python3中的range代替了xrange
+8. 类型转换也用到了迭代器，如元组转换成列表，是将元组内元素一个个的取出，然后append到一个新的列表
+9. send函数可以传递给赋值给yield a 的左边，之后运行一圈后，将yield a的值再传到send的左端
+10.生成器的返回值会给抛出的异常，用ex.value查看
+11.greenlet封装了yield，相比于生成器，能更容易的进行多任务,但是仍然需要手动切换
+12.gevent是一个比greenlet更加强大的模块，gevent在遇到input，网络文件操作时，会自动切换程序
+13.import gevent
+   from gevent import monkey
+   gevent.monkey.patch_all
+   g1 = gevent.spawn(fun1,args)
+   g1.getcurrent()                   返回当前的spawn对象
+   g1.join()
+   gevent.join_all([g1,g2,g3])
+
+14.进程是资源分配的单位
+15.线程是操作系统调度的单位
+16.进程切换要求资源大，效率较低
+   线程切换要求资源一般，效率一般（不考虑GIL的情况下）
+17.协程切换要求资源小，效率较高
+18.多线程，多进程可能是并行的，协程一定是并发的

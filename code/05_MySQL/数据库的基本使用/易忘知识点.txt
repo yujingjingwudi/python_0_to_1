@@ -1,0 +1,98 @@
+数据库优点：持久化存储，读写速度极高，保证数据的有效性，对程序支持优化，易扩展
+主键：能够唯一标记某一字段
+关系型数据库：表之间有关联
+RDBMS：关系型数据库管理系统
+SQL：SQL是结构化查询语句，是一种用来操作RDBMS的数据库语言
+    主要分为：
+        DQL：数据查询语言，用于对数据进行查询，如select
+        DML：数据操作语言，增删查改
+        TPL：事务处理语言，begin transaction,commit,rollback
+        DCL：数据控制语言，进行授权和权力回收，grant，revoke
+        DDL：数据定义语言，进行数据库、表的管理等、如create、drop
+        CCL：指针控制语言，declare cursor
+
+命令：
+sudo apt-get install mysql-server         # 安装mysql
+sudo service mysql start                  # 启动服务
+ps ajx | grep mysql
+sudo service mysql stop                   # 暂停服务
+sudo service mysql restart                # 停止服务
+
+配置：
+配置文件目录：/etc/mysql/mysql.cnf
+mysql端口：3306
+
+开发环境：开发
+生产环境：放在公网上测试
+
+类型，约束
+常用类型：整形：int，bit
+         小数：decimal
+         字符串：varchar，char(固定长度的字符串),text
+         日期时间：data，time，datatime
+         枚举类型：enum
+
+--为注释
+
+约束：primary key
+     not null
+     unique：
+     default：
+     foreign key：对关系字段进行约束，当为关系字段填写值的时候，会到关联的表中查询这个值是否存在，若存在填写成功，否则抛出异常
+
+mysql命令：
+    mysql -u【用户名】 -p[密码] 链接数据库
+    exit/quit/Ctrl+D  退出数据库
+    show databases    显示数据库
+    select now()      显示当前数据库时间
+    select version()  显示当前数据库版本
+    create database 数据库名 charset=utf8(没有-)
+    show create database 数据库名
+    drop database     删除数据库
+    use 数据库名       使用数据库
+    select database() 查看使用的数据库
+
+
+    show tables
+    create table students(id int unsigned not null auto_increment primary key,
+                          name varchar(30),
+                          age tinyint unsigned,
+                          hiigh decimal(5,2),
+                          gender enum("男","女","保密") default = "保密",
+                          cls_id int unsigned
+                          )                                                        # create table 表名(字段 类型 约束，...)
+    desc table        查看表创建信息
+    show create table 表名 查看表创建语句
+    insert into value(xx,xxx,xxx,xxx)
+    alter table 表名 add 列名 类型 约束
+    alter table 表名 modify 列名 类型
+    alter table 表名 change 元列名 列名 类型约束
+    alter table 表名 drop 列名
+    drop table 表名
+
+    mysql引擎：
+        innodb：支持事务处理，外键与行级锁
+ create table wife(
+     id int unsigned not null primary key auto_increment,
+     name varchar(30) not null,
+     age tinyint unsigned,
+     gender enum("男","女") default "女",
+     point int unsigned);
+
+插入：
+    insert into 表名 value(xxx,xxx,xxx,xx)   -- 空号内要将所有的值都要添上，自增的字段可以用0,null,default代替，枚举类型也可以用数字代替
+    insert into 表名 (id,name,...) value (1,xxx,...) -- 部分插入
+    insert into 表名 (id,name,...) value (1,xxx,...)(2,xxx,...)(3,xxx,...) --多行插入
+    insert into 表名 value(xxx,xxx,xxx,xx)(xx,xxx,xxxx,xx) --多行插入
+更改：
+    update 表名 set xxx=xx,yyy=yy where zzz=zz
+查找：
+    select * from table;
+    select a,b from table;
+    select * from table where a>b;
+    select a as abc,b as def from table where c>d;
+删除：
+    delete from 表名 where xx=xxx
+    删掉之后，id不会回溯，因此通常不会真正的删除id而是增加一个属性逻辑删除
+    alter table add is_delete bit default 0;
+    

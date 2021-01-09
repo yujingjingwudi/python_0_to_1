@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .menu{
+            width:400px;
+            margin:50px auto 0;
+            border:1px solid #000;
+            /*清楚抖动的方法*/
+            /*1.在父类上添加overflow:hidden*/
+            /*overflow: hidden;*/
+
+        }
+        
+        .menu p{
+            width:80px;
+            height:80px;
+            border:1px solid pink;
+            background: green;
+            float: left;
+        }
+        .clearfix:after{
+            content:"";
+            display:table;
+            clear:both;
+        }
+        .clearfix{
+            zoom:1 /*适配 用*/
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="clearfix"></div>
+        <!--<div style="clear:both"></div>-->
+        <!--清除浮动的方法2-->
+        <!--添加一个空的div 样式是clear:both-->
+    </div>
+
+</body>
+</html>

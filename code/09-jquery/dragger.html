@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{
+		padding: 0;
+		margin:0;
+	}
+	.main_container{
+		height: 600px;
+		width: 400px;
+		margin:50px auto;
+		border: 1px solid #333;
+		box-sizing:border-box;
+		/*padding: 20px 0 20px 20px;*/
+		position: relative;
+		overflow: hidden;
+	}
+	.text{
+		margin: 10px 0 10px 20px;
+		float: left;
+		font-size: 20px;
+		line-height: 40px;
+		background-color: pink;
+		/*height: 578px;*/
+		width:348px;
+		position: absolute;
+		text-align:  justify;
+		text-indent: 40px;		
+	}
+
+	.dragger_con{
+		border-radius: 5px;
+		float: right;
+		display:absolute;		
+		/*position: absolute;*/
+		width:10px;
+		margin: 5px 5px 5px 0;
+		height: 590px;
+		background-color: red;
+	}
+	.dragger{
+		border-radius: 5px;
+		width: 10px;
+		height: 100px;
+		background-color: gold;
+	}
+</style>
+<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var $drag_max = 490;
+		var $page_size = $('.text').outerHeight(true);
+		var $hide = $page_size-600;
+		// alert($page_size);	
+		var val;
+		$('.dragger').draggable({
+			containment:'parent',
+			opacity:0.6,
+			drag:function(ev,ui){
+				// console.log(ui);
+				// document.title = ui.position.top;
+				val = ui.position.top;
+				$('.text').css({
+					'top': -$hide*(val/490)
+				});
+			}
+		})
+	})
+</script>
+<body>
+	<div class="main_container">
+		<div class="text">OVA第1部《Re:从零开始的异世界生活 雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活 冰结之绊》于2019年11月8日在日本上映，BD/DVD于2020年4月1日发售。两部OVA在中国香港于2020年3月27日合并上映 [3]  ，中国台湾则于2020年3月27日合并上映OVA第1部《Re:从零开始的异世界生活 雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活 冰结之绊》于2019年11月8日在日本上映，BD/DVD于2020年4月1日发售。两部OVA在中国香港于2020年3月27日合并上映 [3]  ，中国台湾则于2020年3月27日合并上映OVA第1部《Re:从零开始的异世界生活 雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活 冰结之绊》于2019年11月8日在日本上映，BD/DVD于2020年4月1日发售。两部OVA在中国香港于2020年3月27日合并上映 [3]  ，中国台湾则于2020年3月27日合并上映</div>
+		<div class="dragger_con">
+			<div class="dragger"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+CSS cascading stype sheet 层叠样式表 css让样式和排版分开
+
+css引入方式
+1.外联式：新建个文件创建样式表<link rel="stylesheet" type="text/css:href="">
+2.嵌入式：通过style标签，在网页上嵌入样式表<style>
+                                              h1{
+                                                   font-size:39px
+                                              }
+                                                </style>
+3.行内样式：直接在标签里写样式，在style属性里写
+
+
+常用的css样式：
+color
+font-size
+font-family          字体
+font-style           是否倾斜 normal不倾斜 italic倾斜
+font-wegiht          是否加粗 normal不加粗 bold加粗
+line-height          设置行高
+font                 同时设置多个属性顺序是是否加粗 字号 行号 20px/40px 'microsoft Yahei'
+text-decoration      下划线 text-decoration:underline  null   一般链接取消下划线
+text-indent          文字首行缩进
+
+有顺序的,依次如下
+font : font-style || font-variant || font-weight || font-size || line-height || font-family
+
+颜色选择器：
+1.描述：red，green，gold
+2.RGB：rgb(255,0,0)
+3.十六进制：#FFFFFF
+
+选择器：
+1.标签选择器
+此类选择器影响范围大，尽量应用在层级选择器中
+例子：
+div{color:red;}
+2.id选择器
+#itemid{
+    color:red
+}
+}
+3.类选择器：类选择器的权重没有后id选择器的权重高
+.green{
+    color:#FF0000
+}
+<span class="green">
+4.组选择器：当多个选择器的结构类似时，可以使用
+.box1,.box2,.box3{
+    font-size=20px;
+    text-indent=0px;
+}
+.box1{
+color:red
+}
+.box2{
+color:green
+}
+.box3{
+color:blue
+    }
+伪类和伪元素选择器：
+.box1:hover: 鼠标放在目标上
+.box1:before：前置内容
+.box1:after：后置内容无法被选取
+
+
+盒子模型
+.box{
+    width:200px;
+    height:200px;
+    backgroud-color:gold;
+    border-top-color:#000000;
+    border-top-width:10px;
+    border-top-style:solid实线(dashed虚线,dotted点线)
+    border-top:10px,solid,#000;
+    border-left:10px,dashed,#000;
+    border-right:10px,dotted,#000;
+    border-bottom:10px,solid,#000;
+    border:10px:solid,#000;
+    padding...4个参数的时候从顶部开始顺时钟，3个参数的时候为上，左右，下
+              2个参数的时候是上下，左右
+    margin...margin的左右参数可以用auto替代，左右auto时候会自动居中，
+    margin负值可以让元素位移，边框合并
+}
+body自带8px的margin
+margin垂直方向的margin会合并，比如有两个盒子垂直排列，上面的盒子margin-bottom
+10px，下面的盒子margin-top10px，这样只会显示10px
+应对这种的方式：
+1.使用这种特性
+2.只设置一边的外边距
+3.将元素浮动或者定位
+
+margin-top塌陷：在两个盒子嵌套的时候，内部盒子的margin-top会加到外面的盒子上，导致内部的盒子margin-top
+设置失败：解决方法：
+1.外部盒子设置一个边框
+2.外部盒子设置overflow hidden
+3.使用伪元素类
+
+元素溢出：当子元素的尺寸超过父元素时，需要设置父元素显示子元素的方式，通过哟overflow来设置
+overflow：1.visible：默认值，内容不会被修建，会呈现在元素框之外
+          2.hidden：内容会被修剪，并且其余内容不可见，此属性还有清除塌陷，清除margin-top的功能
+          3.scroll：内容会被修剪，但是会提供滚动条
+          4.auto:如果内容被修剪， （如果内容少，没有滚动条，如果多，会有滚动条
+          5.inhert：从父类继承overflow属性
+
+盒子类型：
+块元素：也叫行元素，布局内常用标签：div，p，ul, li, h1-h6, dl, dt, dd
+        特点：支持全部的样式，如果没有设置宽度，默认宽度是父级宽度的百分百
+        盒子占据一行，即使设置了宽度
+
+内联元素：也叫行内元素常用标签：a,span,em,b,strong,i
+        特点：行内元素并在一行，支持部分样式，不支持宽高，margin上下，padding上下，内容决定宽高，
+        代码换行，盒子之间会产生间距，子元素是内联，父元素可以设置text-align设置子元素对其方式
+
+解决内联元素间隙的方法
+1.去掉内联元素之间的换行（不推荐）
+2.将内联元素的父级font-size设置为0，内联元素自身再甚至font-size
+
+内联块元素：也叫行内块元素，是新增的元素类型，img和input类似这种元素，可以用display讲块元素和内联元素转化成这种元素
+特点：1.支持所有样式
+     2.如果没有设置宽高，宽高由内容决定
+     3.盒子并在一行
+     4.代码换行，盒子会产生间距
+     5.子元素是内联块元素，父元素可以用text-align设置对其方法
+
+display：
+    1.none 元素隐藏且不占位置
+    2.block 元素以块元素显示
+    3.inline 元素以内联元素显示
+    4.inline-block以内联块元素显示（内联块元素中，margin不会合并
+
+浮动：
+    1.浮动元素有左浮动和右浮动两种
+    2.浮动的元素会向左或向右浮动，碰到父元素边界 ，其他元素才会停下来
+    3.相邻浮动的k块元素可以并到一起，超出父级元素就换行
+    4.浮动让块元素和行内块元素自动转换成行内块元素（此时不会有行内块间隙问题）
+    5.浮动元素后面没有浮动的元素会占据浮动元素的位置，没有浮动的元素内的文字
+    会避开浮动的元素形成文字绕图的效果
+    6.如果父元素没有设置尺寸，父元素内整体浮动的元素无法撑开父元素，父元素需要清除浮动
+
+清除浮动：
+    1.父级上增加属性overflow:hidden
+    2.在最后一个子元素后面加上一个空的div，给他样式属性clear both（不推荐）
+    3.使用成熟的清浮动样式类：clear:both;
+    .clearfix:after{
+        content:"";
+        display:table;
+        clear:both
+    }
+    通常和避免margin内陷一起使用
+    .clearfix:after .clearfix:before:{
+        content:"";
+        display:table;
+    }
+    .clearfix:after:{
+        clear:both
+    }
+
+
+定位布局：
+    文档：流是指盒子按照html标签的顺序从左往右，从上至下的谁序排列
+关于定位：
+    可以使用css的position设置元素的定位类型，position额设置项：
+        relative：生成相对定位元素，元素所占的文档流位置保留，元素相对本身位置进行偏移
+        absolute：绝对定位元素，元素脱离文档流，不占用文档流的位置，可以理解为漂浮在文档流上方，相对于设置了定位的父级元素进行定位，如果没有的话就是body
+        fixed：生成固定定位元素，漂浮于文档流上方，相对于浏览器窗口定位
+        static：默认值，相对于取消定位或没有定位属性
+        inherit：从父元素继承position属性
+定位元素层级：
+    使用z-index设置层级
+定位元素特性：
+    绝对定位和固定定位的块元素会自动转化成行内块元素
+
+
+backgroud:backgroud负责给盒子设置背景图片和背景色，background是一个复合属性
+    background color设置背景颜色
+    background image设置图片地址，默认是平铺完
+    background repeat设置图片如何重复平铺
+    background position设置图片位置
+    background attachment设置图片是随着页面滚动而滚动
+
+backgroud repeat: repeat-x/repeat-y/no-repeat/repeat
+backgroud  position: left bottom/left center...10px 50px...//可以写方位，也可以精确定位
+backgroud:url(image/bg.jpg) left top no-repeat cyan;
+background attachment：fixed可以设置背景不动

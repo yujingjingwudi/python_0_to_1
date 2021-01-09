@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    url链接：
+    <a href="/login/index2">回归首页</a><br />
+    url反向解析生成:
+    <a href="{% url 'logining:test1' %}">回归首页</a><br />
+    动态args反向解析：
+    <a href="{% url 'logining:show_args' 1 2 %}">login/show_args/1/2</a><br />
+    动态kwargs反向解析：
+    <a href="{% url 'logining:show_kwargs' c=3 d=4　%}">login/show_kwargs/3/4</a>
+</body>
+</html>

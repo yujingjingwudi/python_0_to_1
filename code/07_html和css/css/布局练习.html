@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        p{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .box1{
+            margin:20px auto 0;
+            height:40px;
+            width:600px;
+            border:1px solid #333;
+            list-style: none;
+            text-align: center;
+            margin-top:7px;
+            font-size:0;
+            padding:0;
+            /*去掉ul自带的padding*/
+        }
+
+        .box1 .item1{
+            height: 36px;
+            color: #000;
+
+            display: inline-block;
+            margin:7px 5px 0;
+        }
+        .item11{
+            background: gold;
+            padding:0 10px 0;
+            font:12px Microsoft Yahei;
+            text-align: center;
+            line-height:26px;
+            display:block;
+            height:26px;
+        }
+
+        .item12{
+            font-size:12px;
+        }
+
+        .item11:hover{
+            color: #fff;
+            background-color: pink;
+        }
+
+
+        .box2{
+            list-style:none;
+            height:40px;
+            width:958px;
+            margin:20px auto 0;
+            border:1px solid #000;
+            text-align: center;
+            padding:0;
+            font-size:0
+        }
+
+        .item2{
+            display: inline-block;
+            font-size:14px;
+            height:40px;
+            /*background-color:cyan;*/
+            
+        }
+        /*a是行内元素，无法设置宽高，需要换成块元素*/
+        .item22{
+            display:block;
+            height:40px;
+            margin:0 20px 0;
+            text-decoration: none;
+            font:14px/40px "Microsoft YaHei UI";
+            color:#333
+        }
+
+        .item22:hover{
+            color:#ff8800;
+        }
+
+
+        .box3{
+            list-style: none;
+            height:40px;
+            width:960px;
+            padding:0;
+            background: #55a8ea;
+            margin:30px auto 0;
+            text-align: center;
+        }
+
+        .box3 li{
+            float:left;
+            width:100px;
+            height:40px;
+        }
+
+        .box3 a{
+            display:block;
+            color:#fff;
+            height:40px;
+            width:100px;
+            font:14px/40px "Microsoft YaHei UI";
+        }
+        
+        .box3 a:hover{
+            background: #00619f;
+        }
+
+
+        .box4{
+            width:958px;
+            border:1px solid #666;
+            margin:20px auto 0;
+        }
+
+        .item4{
+            width:918px;
+            height: 50px;
+            border-bottom:1px solid #666;
+            margin:0 auto 0;
+        }
+
+        .item4 h3{
+            float:left;
+            padding:0 10px 0;
+            color:#000;
+            font:normal 18px/50px "microsoft yahei";
+            margin:0;
+            text-align: center;
+            border-bottom:2px solid red;
+        }
+        .biggerbox{
+            width:918px;
+            margin:20px auto 13px;
+            overflow: hidden;
+        }
+        .item41{
+            list-style: none;
+            width:968px;
+            padding:0;
+            margin:0;
+            /*background-color: cyan;*/
+            /*margin:20px auto 13px;*/
+        }
+        .item42{
+            width:160px;
+            height:68px;
+            float: left;
+            margin: 0 29px 25px 0;
+        }
+        .clearfix:after{
+            display: table;
+            content:"";
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <p>翻页</p>
+    <ul class="box1">
+        <li class="item1"><a href="#" class="item11">上一页</a></li>
+        <li class="item1"><a href="#" class="item11">1</a></li>
+        <li class="item1"><a href="#" class="item11">2</a></li>
+        <li class="item1"><a href="#" class="item11">3</a></li>
+        <li class="item1"><a href="#" class="item11">4</a></li>
+        <li class="item1"><span class="item12">...</span></li>
+        <li class="item1"><a href="#" class="item11">21</a></li>
+        <li class="item1"><a href="#" class="item11">22</a></li>
+        <li class="item1"><a href="#" class="item11">23</a></li>
+        <li class="item1"><a href="#" class="item11">24</a></li>
+        <li class="item1"><a href="#" class="item11">下一页</a></li>
+
+    </ul>
+    <ul class="box2">
+        <li class="item2"><a href="#" class="item22">首页</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">网站建设</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">程序开发</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">网络营销</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">企业VI</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">案例展示</a></li>
+        <li class="item2"><span>|</span></li>
+        <li class="item2"><a href="#" class="item22">联系我们</a></li>
+    </ul>
+
+    <ul class="box3">
+        <li><a href="#">首&nbsp;页</a></li>
+        <li><a href="#">网站建设</a></li>
+        <li><a href="#">程序开发</a></li>
+        <li><a href="#">网络营销</a></li>
+        <li><a href="#">企业VI</a></li>
+        <li><a href="#">案例展示</a></li>
+        <li><a href="#">联系我们</a></li>
+    </ul>
+
+    <div class="box4">
+        <div class="item4">
+            <h3>图片展示图片展示图片展示图片展示</h3>
+        </div>
+        <div class="biggerbox">
+            <ul class="item41">
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+                <li class="item42"><a href="" class="item42"><img src="../imgs/lalala.jpeg" alt="img" class="item44"></a></li>
+            <li><div class="clearfix"></div></li>
+        </ul>
+        </div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,482 @@
+1.jquery介绍：jquery是个函数库，一个js文件，再scripy导入这个js文件就可以用。
+2.jQuery版本:分为1.x,2.x,3.x,1.x兼容低版本浏览器
+3.ready比window.onload要快的原因是，window.onload要等标签加载完，渲染完，然后再执行，ready等标签加载完就运行
+
+4.jquery选择器
+	$('#my') 选择id为my的元素
+	$('.myclass') 选择class为myclass的元素
+	$('li') 选择所有的li元素
+	$('#uli li span') 选择id为uli元素下的所有li下的span元素
+	$('input[name=first');
+
+	对选择进行过滤：
+	$('div').has('p'); //选择包括p元素的div元素
+	$('div').not('.myclass') //选择class 不等于myclass的div
+	$('div').filter('.myclass') //选择class等于myclass的div
+	$('div').eq(5) //选择第六个div元素
+
+	选择集转移
+	$('div').prev(); 选择div元素前面紧挨着的
+	$('div').prevAll(); 选择div元素之前的所有同辈元素
+	$('div').next(); 选择div元素前面紧挨着的
+	$('div').nextAll(); 选择div元素之前的所有同辈元素
+	$('div').parent(); 选择div的父元素
+	$('div').children(); 选择div的所有子元素
+	$('div').siblings(); 选择div的同级元素
+	$('div').find('.myclass'); 选择div内的class等于myclass的元素
+
+	length方法，length可以判断选择器是否选中了元素，返回值是一个长度
+	jquery选择器没有选中元素也不会报错
+
+5.样式的操作：
+	$('div').css("width") 读
+	%('div').css('width','30px') 写
+
+6.操作样式类名
+	$("#div1").addClass("divclass2")//为id为div1的对象追加央视divClass2
+	$("#div2").removeClass("divClass")移除id为div2的对象的class名为divClass的样式
+	$("#div1").removeClass("divClass1 divClass2")移除多个样式
+	$("#")
+	$('#div1').toggleClass("anotherClass") 重复切换anotherClass样式，有则添加，无则删除
+
+7.绑定click事件：
+    $('#div1').click(function(){});
+
+8.jquery特殊效果
+	fadein()淡入
+	fadeout()淡出
+	fadetoggle()切换淡入淡出
+	hide()隐藏元素
+	show()显示元素
+	toggle()切换元素的可见状态
+	slideDown()向下展开
+	slideUp()向上卷起
+	slideToggle()依次展开或者卷起
+
+9.jquery链式操作：jquery对象的方法会在执行完后返回这个jquery对象，所有jquery对象的方法可以连起来写：
+	$('#div1')
+	.children('ul') 该元素下面的ul子元素
+	.childDown('fast') 高度从零变到实际高度来显示ul对象
+	.parent() 跳到ul的父元素
+	.siblings() 调到div1的所有兄弟元素
+	.children('ul') 这些兄弟元素的ul子元素
+	.slideUp('fast') 实际高度变成0来隐藏元素
+
+10.jQuery版本动画
+	%('.item').animate({
+		param1: value1,
+		param2: value2},
+		speed, function() {
+		/* stuff to do after animation is complete */
+	});
+
+11.获取和设置元素的尺寸
+	width(),height() 获取元素的width和height
+	innerwidth(),innerheight() 包括padding的width和height
+	outerwidth(),outerheight() 包括border的width和height
+	outerwidth(),outerheight() 包括border，padding，margin
+
+	获取元素相对页面的绝对位置
+	offset()
+
+	获取浏览器可视区宽度高度
+	$(window).width()
+	$(window).height()
+
+	获取文档宽度高度
+	$(document).heigth()
+	$(document).height()
+
+	获取页面滚动距离
+	$(document).scrollTop();
+	$(document).scrollLeft();
+
+	页面滚动事件
+	$(window).scroll(function()){
+		...	
+	}
+
+12.jquary属性操作
+	1.html()取出或设置html内容
+	2.prop()获取或设置某个属性
+		取出：var $src = $('#img1').prop('src');
+		设置：('#img1').prop({src:"test.jpg",alt:"Test Image"})	
+
+13.jquery循环：
+	可以一次对多个标签进行操作：
+	jquery.each(fuction(){}
+	第一个参数是索引值)
+
+14.事件函数列表
+	blur() 元素失去焦点
+	focus() 元素获得焦点 功能与属性autofocus效果一样 //一般让input元素一开始就获得焦点
+	click() 鼠标单击
+	mouseover() 鼠标移入(进入子元素也触发)
+	mouseout() 鼠标移出(进入子元素也触发)
+	mouseenter() 鼠标进入(进入子元素不触发)
+	mouseleave() 鼠标离开(进入子元素不触发)
+	hover() 同时为mouseenter，mouseleave指定参数
+	ready() DOM加载完成
+	resize() 浏览器窗口大小发生变化
+	scroll() 滚动条位子发生变化
+	submit() 用户递交表单
+
+	绑定时间的其他方法：
+	$('li').bind(click, function(){})
+	取消绑定：
+	$('li').unbind('mouseover');
+
+15.事件冒泡
+	当绑定了事件的元素，执行事件时，该事件会上传，与位子无关，子级传给父级，父级再往上(即使父级没有定义该事件函数)
+	阻止事件冒泡：event.stopPropagation()来阻止 
+	阻止默认行为：event.preventDefault()
+	//比如：
+	$('#form1').submit(function(event){
+		event.preventDefault(); //阻止表单提交
+	}
+	阻止默认行为和事件冒泡的合并写法：
+		return false;
+
+16.事件委托：
+	事件委托就是利用冒泡的原理，把时间加在父级上，通过判断时间来源，执行相应的操作，事件委托可以极大减少事件绑定次数，提高性能，其次可以让新加入的子元素有相同的操作
+	$('.list').delegate('li','click',function(){})
+	$('.list li').click(function(){}) 这种方法会绑定多次，效率低，而且添加的新元素需要重新绑定
+
+17.节点操作：
+	可以对新建的节点操作，也可以对已有的节点操作（形式是剪切）
+	$('#div').append('<a href="#">链接</a>');添加标签
+	$('#div').append('<a>'); 添加一个空的a标签
+	'<a>'.appendto($('#div'));a放入div中
+
+	prepend():从现存元素的内部的前面插入元素
+	prependto():同prepend，
+
+	after():从外部的后面添加
+	insertafter():添加至外部的后面
+
+	before():从外部的前面添加
+	insertbefore():添加至外部的前面（也可以使用这个方法调换位置）
+
+	remove():删除节点
+
+18.滚轮事件
+	需要jquery.mousewheel插件
+	函数节流，js中有很多函数出发频率非常高，如onresize事件，onmousemove事件，以及滚轮事件，在短时间多处出发执行绑定的函数，可以巧妙的使用定时器减少触发的次数，实现节流,只执行一次的定时器
+
+19:ajax和jsonp
+	json:javascriopt Object Notation:javascript对象表示法
+	json内只能使用双引号
+	ajax:需要服务器环境
+	ajax:目的是让javascript发送http请求，与后台通信获取信息和数据ajax原理是实例化xmlhttp对象使用此对象和后台通信，ajax通信过程中不会影响后续javascript，从而实现异步
+	ajax可以实现局部刷新，可以自己发送http请求，不通过浏览器的地址栏，ajax获取到后台数据，更新页面显示的数据部分，做到局部刷新
+
+	同源策略：
+		ajax请求的页面或资源只能是同一个域下面的资源
+
+	ajax使用方法
+	常用参数：
+	1.url请求地址
+	2.type请求方式，默认是'get'，常用还有'post'
+	3.dateType设置返回的数据格式，常用的是'json'，还有'html'
+	4.data设置发送给服务器的数据
+	5.success设置请求成功后的回调函数
+	6.error设置请求失败后的回调函数
+	7.async，设置是否一异步，默认是'ture',表示异步
+	传统写法
+	$.ajax({
+		url:'js/data.json',
+		type:'get',
+		dataType:'json',
+		data:{'aa',1},
+		success:function(data){
+			alert(data.name);
+		}
+		error:function(data){
+			alert('超时');
+		}
+	})
+	新的写法（推荐）
+	$.ajax({
+		url:'js/data.json',
+		type:'get',
+		dataType:'json',
+		data:{'aa',1},
+	})
+	.done(function(data){
+			alert(data.name);
+		})
+	.fail(function(data){
+			alert('超时');
+		})
+
+20.jsonp:jsonp只能请求同一个域下的数据或资源，有时需要跨域请求数据，会用到jsonp
+原理：利用了script标签跨越连接资源的特性，jsonp和ajax原理不同，jquery将他们封装进了同一个函数
+
+$.ajax({
+	url:'js/data.js',
+	type:'get',
+	dataType:'jsonp',
+	jsonpCallback:'fnBack'  
+})
+
+
+21.jqueryUI
+	包含底层用户交互，动画，特效和可更换主题的可视控件
+	最常用的是拖拽
+	（dragger，droppable，resizable，selectable，sortable
+	官网：jqueryui.com
+	$('.scroll_bar').draggable({
+		axis:'y',    //移动方向
+		containment:'parent',   //移动范围
+		opacity:0.6,    //拖拽式透明度
+		drag:function(ev,ui){
+			xxxx
+		}
+	})
+
+22.本地存储
+	javascript不允许文件操作
+	本地存储分为cookie，localstorage,sessionstorage
+	1.cookie存储在本地，容量最大4k，在同源的http请求时携带传递，损耗带宽，可设置访问路径，只有此路劲以及该路径的子路径可以访问此cookie，在设置的过期日期之前有效
+	jquery设置cookie
+	mycookie:属性名 123：属性值 expire过期时间 path，存放地址
+	$.cookie('mycookie','123',{expire:7,path:'/'})
+	jquery获取cookie
+	$.cookie('mycookie');
+
+	2.localStorage存储在本地，容量为5m或更大，不会在请求时候携带传递，在所有同源窗口中共享，数据一直有效，除非人为删除，可作为长期数据
+	//设置
+	localStorage.setItem('dat','456');
+	localStorage.dat='456';
+	//获取
+	localStorage.getItem('dat');
+	localStorage.dat
+	//删除
+	localStorage.removeItem('dat')
+
+	3.sessionStorage存储在本地，容量5m或更大，不会再请求时候携带，仅在一个窗口中有效
+	sessionStorage.setItem('dat','456');
+
+	localstorage和sessionstorage合称为webstorage,webstorage支持时间通知机制，可以将数据更新通知监听者，web storage的api使用更方便
+
+	4.移动js事件和swiper库
+	几个时间：
+		1.touchstart:放在屏幕上触发
+		2.touchmove:手指滑动时触发
+		3.touchend:手指离开屏幕时触发
+		4.touchcancel:系统取消touch事件时候触发
+	移动端js库：
+		1.zeptojs:轻量级的，与jquery与类似的api，（过气了）
+		2.官网:http://zeptojs.com
+		3.api文档 https://www.swiper.com.cn/api/index.html
+		zeptojs包含很多模块，包括core,ajax,event,form,ie模块
+
+		2.swiper:swiper.js是一个成熟稳定应用于pc和移动端的滑动效果插件，一般用来触屏焦点图，触屏整屏滚动等效果，2.x版本兼容低版本浏览器，3.x放弃兼容低版本浏览器
+		使用方法：
+		1.如果引入了jquery，则使用swiper.jquery.min.js,
+		如果没引，则引入swiper.min.js
+
+		例子：
+		var swiper = new Swiper('.swiper-container',{
+                loop:true,  //是否循环
+                autoplay:{
+                    stopOnLastSlide:false, //是否停在最后一张
+                    disableOnInteraction:false
+                    // prevButton:'.swiper-button-prev',
+                    // nextButton\:'.swiper-button-next'
+                },
+                pagination:{
+                    el:'.swiper-pagination',
+                    clickable:true,   
+                },
+                navigation:{
+                    nextEl:'.swiper-button-next',
+                    prevEl:'.swiper-button-prev'
+                }
+
+		3.bootstrap框架,基于html，css，javascript，移动优先，响应式布局
+		bootstrap容器：
+			container-fluid 流体
+			container：//容器宽度
+			1170 970 750 100%
+			<div class="container-fluid">液体容器</div>
+			<div class="container">响应式固定容器</div>
+		bootstrap响应式查询区间：
+		1.大于768
+		2.大于992
+		3.大于1200
+		bootstrap栅格系统：
+		bootstrap将页面横向分为12等份，按照12等份定义了适应不同宽度等分的样式类，这些样式组成了一套响应类，移动设备优先的流式栅格系统：
+		1.col-lg-1200排成1行，小于1200分别占一行
+		2.col-md-992
+		3.col-sm-768
+		4.col-xs 始终一行
+
+		col-xx-offset-n,偏移n份
+
+		bootstrap隐藏类：
+		1.hidden-xs;
+		2.hidden-sm;
+		3.hidden-md;
+		4.hidden-lg;
+
+		bootstrap:
+		1.btn 申明按钮
+		2.btn-default 默认按钮样式
+		3.btn-primary
+		4.btn-suceese
+		5.btn-info
+		6.btn-warning
+		7.btn-danger
+		8.btn-link
+		9.btn-lg
+		10.btn-md
+		11.btn-xs
+		12.btn-block 宽度和父级一样
+		13.active
+		14.disabled 让按钮失效
+		15.btn-group 定义按钮组 btn-group-justified按钮组整个占一行
+		注意：使用btn-group搭配btn-justified的时候会出问题，需要在外围添加一个div，class=btn-group
+
+
+		表单
+		1.form申明一个表单域
+		2.form-inline 内联表单域,排列在一行
+		3.form-horizontal 水平派列表域
+		4.form-group 表单组
+		5.form-control 文本输入框
+		6.checkbox checkbox-inline 多选框样式
+		7.radio radiobox-inline
+		8.input-group 表单控件组
+		9.input-group-addon	表单控件组物件样式
+		10.input-group-btn 表单空间组为按钮的样式
+		11.from-group-lg 大尺寸表单
+		12.form-group-sm 小尺寸
+
+		导航条：
+		1.navbar 申明导航条
+		2.navbar-default 申明默认的导航条样式
+		3.navbar-inverse 申明黑白的导航条样式
+		4.navbar-static-top 吐掉黑白的导航条样式
+		5.navbar-fixed-top 固定到顶部的导航条
+		6.navbar-fixed-bottom 固定到底部的导航条
+		7.navbar-header 申明logo的容器
+		8.navbar-brand 针对logo等固定内容的样式
+		9.nav navbar-nav 定义导航条中的菜单
+		10.navbar-form 定义导航条中的表单
+		11.navbar-btn 定义导航条中的按钮
+		12.navbar-text 定义导航条中的文本
+		13.navbar-left 菜单靠左
+		15.navbar-right 菜单靠右
+		关联控件属性. data-toggle="navbar-toggle" data-target="#item"
+
+		模态框：
+		1.modal申明一个模态框
+		2.modal-dialog定义模态框尺寸
+		3.modal-lg定义大尺寸模态框
+		4.modal-sm定义小尺寸模态框 调整尺寸大小，放在modal-dialog这一层中
+		5.model定义小尺寸模态框
+		6.modal-body
+		7.modal-footer
+
+		模态框结构：
+		.modal>.modal-dialog>.modal-content>.modal-header+.modal-body-.modal-footer
+		关联控件属性. data-toggle="model" data-target="#item"
+		data-dismiss="model"
+
+		路径导航：
+		<ol class="breadcrumb">
+			<li><a href="#">home</a></li>
+			<li><a href="#">library</a></li>
+			<li class="active	">Date</li>
+		</ol>
+
+		巨幕：
+		<div class="jumbotron">
+			<div class="container">
+				...
+			</div>
+		</div>
+
+		bootstrap图片
+		img-resonsive申明响应式图片
+		
+		thumbnail图片+框+简介：一般和栅格一起使用
+		row的作用是平衡掉container中的15的边距
+
+	24正则：
+		创建规则：
+		var re01 = new RegExp('a',i); 比较慢
+		var re02 = /规则/参数;
+		用法：re01.test(string);
+
+		\b 匹配单词边界
+		\B 匹配非单词边界
+		\w 字母数字下划线
+		\s 空白符
+		\S 非空白符
+
+		？ 出现0次或1次
+		+ 1次以上
+		* 0次或任意次
+		{n} n次
+		{m,n} m-n次
+		{m,} m次以上
+
+		修饰参数：
+		g:global，全文搜索
+		i:ingore case, 忽略大小写
+
+		常用函数
+		1.test:匹配成功返回真，否则返回false
+		2.replace:匹配成功的字符替换新的字符
+
+		常用正则：
+		1.用户名验证
+		var reUser = /^\w(6,20)$/;
+
+		2.邮箱验证
+		var reMail = /^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$/i;
+
+		3.密码验证
+		var rePass = /^[\w!@#$%^&*]{6,20}$/;
+
+		4.手机号码验证
+		var rePhoto = /^1[3458]\d{9}$/;
+
+	25:前端性能优化
+		1.代码部署：
+			1代码压缩
+			2图片，js，css等静态资源，使用和主站不同域名地址存储，从而使传输资源时带上不必要的cookie信息
+			3使用内容分发网络CDN
+			4为文件设置last-modified,expires和etap（尽量让客服端读缓存
+			5使用gzip压缩存储
+			6权衡dns查找次数
+			7避免不必要的重定向 ，在连接后加个斜杠
+		2.编码：
+			html:
+				1结构清晰，简单，语义化标签
+				2避免空的src和href
+				3不要再html缩放图片
+			css:
+				1精简css选择器
+				2把css放在顶部
+				3使用base64图片
+				4css图画取代js动画
+				5字体图标
+				6使用svg图片
+				7避免使用css表达式（穿插js）
+			js:
+				1减少引用库的个数
+				2使用requirejs或seajs异步加载js
+				3js放在页面底部引入
+				4避免全局查找
+				5使用原生方法
+				6用switch代替复杂的ifelse
+				7j减少语句数量
+				8使用字面量表达式初始化数组或对象
+				9使用innerHTML屈大夫杂志的元素注入
+				10使用事件委托
+				11避免多次访问dom选择集
+				12	高频出发事件设置函数节流
+				13使用web storage缓存数据

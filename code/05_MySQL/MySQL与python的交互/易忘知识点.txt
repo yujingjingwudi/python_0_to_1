@@ -1,0 +1,117 @@
+-- 外键：
+    alter table goods add foreign key (cate_id) references goods_cates(id);
+
+--准备数据
+    create databasae jing_dong charset=utf8;
+--使用;
+    use jing_dong;
+--创建数据库;
+    create table goods(
+        id int unsigned primary key auto_increment not null,
+        name varchar(150) not null,
+        cate_name varchar(40) not null,
+        brand_name varchar(40) not null,
+        price decimal(10,3) not null default 0,
+        is_show bit default 1,
+        is_saleoff bit default 0
+        );
+--插入数据
+    insert into goods values(0,'r510vc 15.6英寸笔记本电脑','笔记本','华硕','3399',default,default);
+    insert into goods values(0,'r520vc 15.6英寸笔记本电脑','台式机','联想','6399',default,default);
+    insert into goods values(0,'rbgeav 14.0英寸笔记本电脑','超级本','戴尔','38399',default,default);
+    insert into goods values(0,'mac-3532c 15.6英寸笔记本电脑','超级本','苹果','7399',default,default);
+    insert into goods values(0,'kegjao 15.6英寸笔记本电脑','笔记本','宏碁','9399',default,default);
+    insert into goods values(0,'k3afg 15.6英寸笔记本电脑','游戏本','华硕','4399',default,default);
+    insert into goods values(0,'gaegec 12.6英寸笔记本电脑','游戏本','雷神','5899',default,default);
+    insert into goods values(0,'r510vc 11.6英寸笔记本电脑','笔记本','华硕','9899',default,default);
+    insert into goods values(0,'agegeg 10.6英寸笔记本电脑','超极本','宏碁','2399',default,default);
+    insert into goods values(0,'r510vc 14英寸笔记本电脑','平板电脑','雷神','7659',default,default);
+    insert into goods values(0,'mkegeo 11.4英寸笔记本电脑','笔记本','华硕','3800',default,default);
+    insert into goods values(0,'geg535 15.6英寸笔记本电脑','笔记本','神舟','10005',default,default);
+    insert into goods values(0,'abc655 15.6英寸笔记本电脑','平板电脑','华硕','20854',default,default);
+    insert into goods values(0,'mkega5 14英寸笔记本电脑','笔记本','小米','7999',default,default);
+    insert into goods values(0,'ge8a9e 15.6英寸笔记本电脑','游戏本','华硕','5399',default,default);
+    insert into goods values(0,'at78ga 19英寸笔记本电脑','超极本','苹果','4299',default,default);
+    insert into goods values(0,'gc-ega 15.6英寸笔记本电脑','服务器','华硕','3299',default,default);
+    insert into goods values(0,'联想中型服务器 15.6英寸笔记本电脑','笔记本','联想','12800',default,default);
+    insert into goods values(0,'nb-656 14英寸笔记本电脑','超极本','华硕','6400',default,default);
+    insert into goods values(0,'keg-44 18.9英寸笔记本电脑','平板电脑','神舟','5200',default,default);
+    insert into goods values(0,'小米超大型服务器','服务器','小米','66600',default,default);
+    insert into goods values(0,'rae-46 12.6英寸笔记本电脑','笔记本','华为','9999',default,default);
+    insert into goods values(0,'ayv56f 14英寸笔记本电脑','服务器','苹果','4700',default,default);
+    insert into goods values(0,'aob-3h 17.6英寸笔记本电脑','台式机','戴尔','8500',default,default);
+
+--SQL语句的强化
+    查询类型cata_name为‘超极本’的商品名称，价格
+    select name,price from goods where cate_name='超级本';
+    查询商品的种类
+    select cate_name from goods group by cate_name;
+    select distinct cate_name from goods;
+    求所有电脑产品的平均价格，并保留两位小数
+    select round(avg(price),2) as '平均价格' from goods;
+    显示每种商品的平均价格
+    select cate_name,avg(price) from goods group by cate_name;
+    查找每种类型的最贵，最便宜，平均价，数量
+    select cate_name,max(price),min(price),avg(price),count(*) from goods group by cate_name;
+    查询所有价格大于平均价格的商品，并且按价格降序
+    select name,price from goods where price>(select avg(price) from goods) order by price desc;
+    查询每种类型中最贵的电脑信息
+    select * from goods as g inner join (select max(price) as nb,cate_name from goods group by cate_name) as p on g.price=p.nb;
+
+--创建商品分类表
+    create table if not exists goods_cates(
+        id int  unsigned primary key auto_increment,
+        name varchar(40) not null
+        )
+    --将goods表中的类别名称输入到新表中
+    insert into goods_cates (name) select distinct cate_name from goods;
+    --将goods表中的类型名更改为类型id
+    update goods as g inner join goods_cates as j on g.cate_name = j.name set g.cate_name=j.id;
+    --更改goods表中类型
+    alter table goods change cate_name cate_name_id int;
+
+    create table if not exists goods_brands(
+        id int unsigned primary key auto_increment,
+        name varchar(40) not null
+        )select brand_name as name from goods group by brand_name;
+
+    --将brand表中的类型名更改为类型id
+    update goods as g inner join brand_cates as j on g.brand_name = j.name set g.cate_name=j.id;
+    --更改goods表中类型
+    alter table goods change brand_name cate_name_id int;
+
+    -- 外键： 类型约束得完全一样，实例开发中很少使用外键，影响查询效率
+    alter table goods add foreign key (cate_id) references goods_cates(id);
+
+    --删除外键
+    alter table goods drop foreign key table;
+
+    --为什么不使用外键，而选择在程序中逻辑判断
+    因为数据库存放在硬盘中
+
+pymysql:
+    1. 引入模块
+        from pymysql import *
+    2. 创建connection对象
+        conn = connection(host='127.0.0.1',port=7890,user='root',passwork='xxxxx',database='jing_dong',charset='utf8')
+    3. 获取cursor()对象
+        csl = conn.cursor()
+    4. 执行sql语句
+        csl.execute("select * from table")
+        csl.fetchone             一次取1条
+        csl.fetchmany(n)         一次取n条
+        csl.fetchall             全取出
+        coon.commit              提交修改
+        conn.rollback            回滚
+    5. 关闭游标
+        csl.close()
+    6. 关闭连接
+        coon.close()
+
+--sql注入：
+    select * from table where name = '%s'
+    select * from table where name = ' ' or 1=1 or '1 '
+    预防方法：不要自己拼字符串
+    params = [find_name]        find_name是用户输入
+    count = csl.execute("select * from table where id = '%s'",params)
+

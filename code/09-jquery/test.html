@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul{
+			list-style: none;
+		}
+
+		.list_con{
+			margin: 20px auto 0;
+			width:200px;
+			border: 1px solid #000;
+		
+		}
+
+		.floor1{
+			height: 30px;
+			line-height: 30px;
+			display: block;
+			background-color:blue;
+			color: white;
+			text-decoration: none;
+			border-top: 1px solid white;
+			font-size: 16px;
+		}
+		.list_con li ul li{
+			
+			height: 30px;
+			line-height: 30px;
+			background-color:lightblue;
+			color: white;
+			border-top: 1px solid white;
+			border-bottom: : 1px solid white;
+			font-size: 14px;
+		}
+		ul li ul{
+			display: none;
+		}
+
+		.active{
+
+			display: block;
+		}
+		ul{
+			width: 52px;
+			list-style: none;
+			margin:10px auto;
+		}
+		li{
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			border: 1px solid #666;
+		}
+		.activa1{
+			background-color: cyan;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"> 
+		$(function(){
+
+			// alert($('a').length);
+			// $('.text').css("background-color","red");
+			$('.floor1').click(function(event) {
+				/* Act on the event */
+				
+				$(this).css("background-color","red");
+			});
+			$('ul li').click(function(event) {
+				/* Act on the event */
+				$(this).addClass('activa1').siblings().removeClass('activa1');
+			});
+		})
+	</script>
+</head>
+<body>
+	
+			<a href="#" class="floor1">&nbsp;水果</a>
+		
+			<a href="#" class="floor1">&nbsp;海鲜</a>
+			
+		
+			<a href="#" class="floor1">&nbsp;肉类</a>
+			
+
+			<a href="#" class="floor1">&nbsp;蔬菜</a>
+			
+			<a href="#" class="floor1">&nbsp;速冻</a>
+			<ul>
+				<li class="activa1"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+</body>
+</html>

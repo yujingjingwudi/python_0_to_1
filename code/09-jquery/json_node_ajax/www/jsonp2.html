@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url: 'https://query.asilu.com/weather/baidu/?city=北京&callback=weather',
+		type: 'get',
+		dataType: 'jsonp',	
+		data: {word: 'b'}
+	})
+	.done(function(dat){
+		console.log(dat);
+		console.log("success");
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+</script>
+<body>
+	<input type="text" name="" class="txt">
+	<ul class="list"></ul>
+</body>
+</html>

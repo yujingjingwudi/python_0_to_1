@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.box{
+			margin:50px auto;
+			width:1208px;
+			height: 224px;
+			position: relative;
+
+		}
+
+		.box2{
+			/*background-color:cyan;*/
+			float: left;
+			height: 224px;
+			width:1104px;
+			margin: 0 10px;
+			/*border: 2px solid #000;*/
+			position: relative;
+			border: 2px solid #000;
+			overflow: hidden;
+			/*overflow: hidden;*/
+		}
+		ul{
+			/*float: left;*/
+			margin:0px;
+			padding: 0;
+			width:2200px;
+			height: 220px;
+			background: #cyan;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		input{
+			position: relative;
+			left: 0;
+			top:100px;
+			float: left;
+			background-color: orange;
+			height: 40px;
+			width:40px;
+			border-radius: 20px;
+			text-align: center;
+			border:0;
+		}
+
+		
+		li{
+			float: left;
+			height: 200px;
+			width:200px;
+			margin: 10px;
+			overflow:hidden;
+		}
+
+		img{
+			height: 200px;
+			width: 200px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var ileft = 0;
+			var ispeend = -2;
+			var inowspeed = 0; 
+			var obtnL = document.getElementById('btnleft');
+			var obtnR = document.getElementById('btnright');
+			var oUl = document.getElementById('ul');
+			oUl.innerHTML = oUl.innerHTML + oUl.innerHTML;
+			function slide(){
+				ileft += ispeend;
+				oUl.style.left = ileft+'px';
+
+				if(ileft<-1100){
+					ileft=0;
+				}
+				if(ileft>0){
+					ileft=-1100;
+				}
+			}
+
+			obtnL.onmouseover = function(){
+				ispeend = 2;
+			}
+
+			obtnR.onmouseover = function(){
+				ispeend = -2;
+			}
+			/*当鼠标移入的时候*/
+			oUl.onmouseover = function(){
+				inowspeed = ispeend;
+				ispeend = 0;
+			}
+			/*当鼠标移开的时候*/
+			oUl.onmouseout = function(){
+				ispeend = inowspeed;
+			}
+
+
+
+			var timer = setInterval(slide,20);
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		 <input type="button" id="btnleft" name="btn1" value="&lt;">
+		 <div class="box2">
+		 	<ul id="ul">
+		 		<li><a href="#"><img src="img/img1.jpg"></a></li>
+		 		<li><a href="#"><img src="img/img2.jpg"></a></li>
+		 		<li><a href="#"><img src="img/img3.jpg"></a></li>
+		 		<li><a href="#"><img src="img/img4.jpg"></a></li>
+		 		<li><a href="#"><img src="img/img5.jpg"></a></li>
+		 	</ul>
+		 </div>
+		 <input type="button" id="btnright" name="btn1" value="&gt;">
+	</div>
+</body>
+</html>

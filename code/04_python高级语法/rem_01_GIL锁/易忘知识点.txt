@@ -1,0 +1,25 @@
+# GIL 全局解释器锁
+GIL只影响线程
+
+面试题：描述python GIL的概念，以及他对python多线程的影响？写一个python多线程爬取网页的程序，阐述多线程是否比单线程性能有所提升并且解释原因？
+答：1. python语言和GIL没有任何关系仅仅是因为Cpython虚拟机（c语言写的python解释器）由于历史原因难以移除GIL  （jpython里面没有GIL）
+   2. GIL：全局解释器锁，每个线程在执行的过程中都要获取GIL，保证同一时间只有一个线程可以执行代码
+   3. 线程释放GIL锁的情况：在IO操作等可能会引起堵塞的system call之前，可以暂时释放GIL锁，但是在执行完毕后，必须重新获取GIL锁 python3使用的计时器 pyhton的tickets达到100时
+   4. python的多进程是可以利用CPU多核的
+   5. 多线程效率比单线程高，因为遇到IO堵塞会自动释放GIL锁
+
+
+python只有多进程才是真正的多任务，是并行的，多线程是假的
+GIL的作用：他保证在同一时刻只有一个线程在执行
+具有IO操作的程序使用多线程能节约时间
+计算很多的程序使用进程
+进程能够发挥多核CPU的威力
+
+解决GIL的问题：
+1.换个解释器
+2.调用其他编程语言
+#例如把一个c语言编译成一个动态库的命令：
+gcc xxx.c -shared -o libxxx.so
+from ctypes import *
+lib = cdll.LoadLibrary("./xxxxx.c")
+t = thread(target(lib.DeadLoop

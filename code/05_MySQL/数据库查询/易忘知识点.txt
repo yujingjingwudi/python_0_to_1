@@ -1,0 +1,109 @@
+sql文件可以直接当作语句直接导入到数据库当中
+
+--查询
+    select * from table;                        查询所有数据
+    select id,name from table;                  查询id和name
+    select id as 序号,name as 姓名 from table;   查询并起别名
+    select table.id,table.name from table;
+    select tb.id,tb.name from tb as tb;         给表起别名
+    select distinct name from table;            去重
+
+--条件查询
+    --比较运算符
+    select * from table where id>18;
+    select * from table where id<>18;         不等于18
+    select * from table where id=18;           不等于18
+    --逻辑运算符
+    select * from table where id>18 and id<29
+    select * from table where id>18 or id<29
+    select * from table where not (age>18 and gender=2)
+
+--模糊查询（效率有点低）
+    -- like
+    -- %替换一个或者多个
+    select * from table where name like '%小%'    --查询名字里带小的
+    -- _替换一个
+    select * from table where name like '__'
+
+    -- rlike 正则
+    select name from table where name rlike '^周.*'
+    select name from table where name rlike '^周.*伦$'
+
+--范围查询
+    --in
+    select * from table where age in (12,16,19);
+    select * from table where age not in (12,16,19);
+    select * from table where age between 18 and 30;
+    select * from table where age not between 18 and 30;  --between xxx and 不能加括号
+    select * from table where not age between 18 and 30;  --这个允许
+
+--空判断
+    --判空is null
+    select * from table where age is null;
+    select * from table where age is not null;
+
+--排序
+    --order by
+    --asc从小到大，即升序，默认是asc
+    --desc从大到小，即降序
+    --默认是按主键排序
+    select * from table where (age between 16 and 36) and gender = 1 order by age (asc);
+    --先按年龄排，年龄相同的情况下按照id的倒序排
+    select * from table where (age between 16 and 36) and gender = 1 order by age (asc),id desc;
+
+--聚合函数
+    --count 总数
+    select count(*) as 男性人数 from table where gender=1;
+    --max 最大值
+    select max(age) as 年龄最大值 from table where gender=2;
+    --max 最小值
+    select mix(age) as 年龄最大值 from table where gender=2;
+    --sum 总和
+    select sum(age)/count(*) as 平均年龄 from table;
+    --avg 平均
+    select avg(age) as 平均年龄 from table;
+    --round 四舍五入 两个参数，第二个参数是保留小数的位数
+    select round(sum(age)/count(*),2) from table;
+
+--分组
+    --group by  group by 会把原表分成四个表,然后分别在这四个表中select
+    select gender,count(*) from stuent group by gender;
+    --group_concat(name)
+    select gender,group_concat(name) from student group by gender;
+    select gender,group_concat(name) where gender = 1 group by gender;
+    select gender,group_concat(name,"_",age,id) from table where gender= group by gender;
+    select gender,group_concat(name) group by gender having avg(age)>30; # where 是对原表进行操作
+
+--分页
+    --limit,limit放在最后面
+    select * from table where gender=1 limit 2;             只显示2个
+    select * from table where gender=1 limit 0-5            从零开始，显示五个
+
+--连接查询
+    -- inner join ... on                                    查询的结果为两个表匹配到的数据
+    select table1 inner join table2 on  table1.id = table2.id;
+
+    -- left join .. on                                      以左边的表为基准
+    select table1 inner join table2 on  table1.id = table2.id;
+
+    -- right join .. on                                     以右边的表为基准
+    select table2 inner join table1 on  table1.id = table2.id;
+    select * from students as s left join classes as c on s.cls_id=c.id having c.id is null;               对原表进行筛选
+    select * from students as s left join classes as c on s.cls_id=c.id where c.id is null;                对结果进行筛选
+
+--自关联
+    --当表为多级结构式，切结构相似，可以合成一个表，如省，市，区，县
+    source xxx.sql 将xxx文件中的sql语句
+    select * from areas as province inner join areas as city on provice.aid=city.pid having province.atitle = '山东省'
+
+--子查询
+    --select 里面嵌套select，把第一个查询语句的结论作为第二个的条件进行查询
+
+--数据库设计
+    --第一范式（1NF）：强调的是列的原子性，列不能再细分
+    --第二范式（2NF）：在1NF的条件下，每个列必须完全依赖于主键，而不能依赖于主键的一部分
+    --第三范式（3NF）：在2NF的条件下，不能出现传递依赖
+    --ER模型：E表示实体，R表示关系，关系描述两个实体之类的对应关系，关系包括一对一，一对多，多对一，多对多，多对一的关系需要在多中添加一个字段，
+      多对多需要添加一个新表
+
+

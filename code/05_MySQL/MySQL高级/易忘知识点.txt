@@ -1,0 +1,124 @@
+--视图；是一个虚拟的表，作为程序和数据库的中介，作用是隔离数据库
+       是一条select语句执行后返回的结果集，所以在创建视图的时候，主要的工作是落在创建这条SQL查询语句中，视图是对若干张表的引用，一张虚表，不存储具体的数据
+
+--定义视图
+    create view v_xxx as select ---- - -  -- -  --查询语句
+    -- 视图往往用在查数据
+
+--查看视图
+    show tables
+
+--使用视图
+    select * from v_xxx
+
+--删除视图
+    drop view
+
+--视图作用
+    1.提高了重用性
+    2.对数据库重构的时候，不影响程序的运行
+    3.提高了安全性能
+    4.让数据更加清晰
+
+--事务：是一个操作序列，要么都不执行，要么都执行，是一个不可分割的操作单位
+    四大特性(ACID)：
+    原子性:一个事物被视为一个不可分割的最小单位
+    一致性:数据库总是从一个一致性的状态转换成另一个一致性的状态
+    隔离性:一个事物所做的修改在最终提交以前，对其他事务是不可见的
+    持久性:一旦事务提交，其做的修改会永远保存到数据库
+
+    命令：
+    start transaction  （或者begin）
+    selectbalance from checking where customer_id = 123;
+    update checking set balance=balance-200 where customer_id=123;
+    update checking set balance=balance+200 where customer_id=123;
+    commit;
+    rollback  回滚
+
+    在mysql中的每个语句自成事务
+
+--索引：索引是一种特殊的文件，他们包含着对数据表里所有记录的引用指针
+    目的：提高查询效率
+    原理：mysql使用的b树，减少查询的次数
+    注：主键和外键已经帮你建立好了索引
+
+    查看索引
+        show index from 表名
+
+    创建索引
+        如果指定字段是字符串，需要指定长度，建议长度和定义字段的时候相等
+        字段类型如果不是字符串，可以不填写长度部分
+        create index 索引名称 on 表名(字段名称（长度））
+
+    删除索引：
+        drop index 索引名称 on 表名
+
+--测试
+    --开启运行时间测试
+    set profiling=1;
+    --查看第一万条数据
+    insert * from test_index where title = 'haha-99999'
+    --查看执行的时间
+    show profiling
+    --为表创建索引
+    create index title_index on test_index(title(10));
+    --再次查询
+
+--账户管理
+    --查看所有用户：
+    desc user
+    --查看所有用户：
+    select host,user,authentication_string from user;
+
+    --创建用户，授予权限
+    grant 权限列表 on 数据库(要定义到表) to '用户名'@'访问主机' identified by '密码';
+    grant select on jing_dong.* to 'laowanng'@'localhost' identified by '123456';
+    grant all privileges on jing_dong.* to 'laoli'@'%' identified by '123456';
+
+    --修改权限
+    grant 新权限列表 on 数据库 to '用户名'@'访问主机' with grant option;
+    flush privileges  刷新权限
+
+    --修改密码
+    update user setautnentication_string=password('新密码') where user='用户名';
+    flush privileges
+
+    --远程登录
+    修改 /etc/mysql/mysql.conf.d/mysql.cnf
+    注释 bing_addr 那一行
+    mysql -h123.567.765.235 -p3306
+    service mysql restart
+
+    一般不适用这个，一般使用ssh登录
+
+    --删除用户
+    drop user '用户名'@'主机'
+    delete from user where user='用户名'
+
+
+--mysql主从
+    作用：数据备份，读写分离，负载均衡
+    原理：mysql主从是基于二进制日志机制，主服务器通过使用二进制日志来记录数据库的变动情况，从服务器通过获取和执行来保持和主服务器的数据一致
+    每一个从服务器都会记录关于二进制日志的信息：文件名和已经处理过的信息，意味着不同的从服务器可以同事执行日志的不同部分，主从服务器都要配备一个唯一的ID号
+
+    配置主服务器的步骤
+    备份数据库：
+    mysqldump -uroot -p 数据库名 > python.sql
+    恢复数据库：
+    mysql -uroot -p 新数据库名 < python.sql         --可以新增两个选项 --all-databases --lock-all-tables
+
+    编辑主服务器的mysql文件，设置   log_bin和server-id
+    sudo service mysql restart
+    重启服务
+
+    配置从服务器,设置log_bin(注释) 和从服务器id
+    sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+    在主服务器上创建一个账号供从服务器使用
+
+    在从服务器上设置
+    change master to master_host='192.168.1.10',master_user='slave',master_password = 'slave', master_log_file='mysql-bin.000006',master_log_pos=590;
+                                                                                                              在主服务器上 show masster_status
+
+    show slave_stauts  查看从服务器状态
+

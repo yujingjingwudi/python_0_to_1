@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			$.ajax({
+			url: 'data.json',
+			type: 'get',
+			dataType: 'json'
+			// data: {param1: 'value1'},
+			})
+			.done(function(dat) {
+				$('h1 span').html(dat.name);
+				$('h2 span').html(dat.age);
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+		})
+
+		
+		
+
+	</script>
+	<title>Document</title>
+</head>
+<body>
+	<h1>姓名：<span></span></h1>
+	<h2>年龄：<span></span></h2>
+</body>
+</html>

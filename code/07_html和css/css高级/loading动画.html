@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+
+        @keyframes loading {
+            from{
+                transform: scale(1,1);
+            }
+            to{
+                transform: scale(1,0.5)
+            }
+        }
+
+        .box1{
+            height:158px;
+            width:300px;
+            border:1px solid #000;
+            margin:160px auto 0;
+        }
+
+        .box1 div{
+            float:left;
+            height:100px;
+            width:30px;
+            margin:15px;
+            background-color: red;
+            border-radius:15px;
+            animation:loading 500ms ease infinite 0ms alternate
+        }
+
+        .box1 div:nth-child(1){
+            background-color:red;
+            animation-delay: 0ms;
+        }
+        .box1 div:nth-child(2){
+            background-color:green;
+            animation-delay: 100ms;
+        }
+        .box1 div:nth-child(3){
+            background-color:pink;
+            animation-delay: 200ms;
+        }
+        .box1 div:nth-child(4){
+            background-color:lightgreen;
+            animation-delay: 300ms;
+        }
+        .box1 div:nth-child(5){
+            background-color:lightblue;
+            animation-delay: 400ms;
+        }
+        .box1 p{
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <p>loading...</p>
+    </div>
+</body>
+</html>

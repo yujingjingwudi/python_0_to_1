@@ -1,0 +1,107 @@
+*{margin: 0;padding: 0;}
+body{background: #0E3B6B;}
+.clear{clear: both;}
+.mc{margin: 0 auto;}
+.l{float: left;}
+.r{float: right;}
+.mr{margin-right: 10px;}
+
+.br{border-radius: 3px;}
+.box{background: url(../images/bg.jpg)no-repeat top center;padding-top:53px; }
+nav{background: rgba(255,255,255,0.9);
+    position: fixed;top: 0;
+    width: 100%;
+    border-top: 2px solid #ff6500;
+    line-height: 50px;
+}
+.header{width:65%; }
+.nav_l form{width: 450px;margin-left: 35px;position: relative;}
+.nav_l form input{width: 435px;height: 27px;padding-left: 15px;}
+ nav .layui-icon-search{position: absolute;right: 10px;top: 0;}
+ nav .layui-icon{font-size: 18px;font-weight: bold;}
+ .nav_r a{margin-right: 15px;position: relative;}
+ .nav_r a:hover{color: #ff6500;}
+ .a_span{position: absolute;top: -7px;right: -10px;}
+ .icon{width: 6px;height: 6px;
+ 	border-radius: 3px;
+ 	background: #ff6500; 
+ }
+ .msg{font-size: 12px;
+ 	background: #ff6500;
+ 	width:20px;
+ 	height: 15px;
+ 	line-height: 15px;text-align: center;
+    color: #fff;
+ }
+ /*导航结束  主题开始*/
+.content{width: 53%;padding-top: 20px;
+ 	background: rgba(6,50,98,0.5); }
+.content_l{width: 73%;/*height:500px;*/} 
+.content_r{width: 24%;}
+ /*主体侧边导航*/
+.content_nav{width: 20%;}
+.content_nav>a{font-size: 14px;font-weight: bold;}
+.content_nav a{display: block;line-height: 35px;padding-left: 10px;color: #fff;position: relative;}
+.content_nav a:hover{background:rgba(255,255,255,0.3) }
+
+.c_span{position: absolute;top: 10px;right: 5px;}
+hr{margin:10px 0;background:rgba(255,255,255,0.3)  }
+
+#va{width: 35px;height: 18px;line-height:18px;background: rgba(255,255,255,0.3) ;
+	text-align: center;position: relative; margin: 0 auto;padding: 0;}
+#va span{position: absolute;top:0;right: 0;}
+
+/*微博发文*/
+.content_msg{width: 80%;}
+.content_msg .text{padding: 10px;background:rgba(7,26,55,0.8); }
+.content_msg p{color: #fff;line-height: 30px;}
+.content_msg .textarea{width: 100%;border: 1px solid #40649D;
+						height: 90px;background:#0C2343;
+						color:rgba(255,255,255,0.3);resize: none; 
+					}
+.content_msg p span{margin-right: 8px;}
+.menu{line-height: 40px;position: relative;}
+
+#but{width: 90px;height: 35px;margin-top: 3px;}
+/*微博文章页面*/
+.item_msg{width: 100%;background:rgba(7,26,55,0.8);
+          margin-top: 10px; padding-top: 8px;           
+  }
+.message{width: 90%;color:rgba(255,255,255,0.7);}
+.message .use img{width: 50px;height: 50px;border-radius: 50%;}
+.msg_content img{height: 200px;}
+.msg_menu {color:#40649D;height: 30px;}
+.msg_menu span{display: inline-block;width: 24%;text-align: center;}
+.s_b{border-right: 1px solid #40649D;}
+.msg_menu span:hover{color:rgba(255,255,255,0.7);}
+.msg_menu span:hover i{color:#ff6500;}
+/*个人信息*/
+.user{background:rgba(7,26,55,0.8);
+	  text-align: center;
+	  color:rgba(255,255,255,0.7);
+}
+.user_pic{width: 100%;background: url(../images/003_s.jpg) no-repeat;}
+.user_pic img{width: 60px;height: 60px;border-radius: 50%;
+	         border:4px solid rgba(255,255,255,0.4);
+	         margin-top: 35px;
+	     }
+.lv{padding:1px;background: #ff6500;border-radius: 6px;}
+.user_pic ul{width: 100%;}
+.user_pic ul li{list-style: none;float: left;width: 33%;margin: 10px 0;height: 30px;line-height: 15px;}
+.user_pic b:hover{color:#1C6FC9; }
+/*表情包*/
+
+.emoji{cursor: pointer;}
+.myEmoji{
+    width: 500px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 3px;
+    border:1px solid #eee;
+    box-shadow:0 4px 20px 1px rgba(0,0,0,0.2);
+    position: absolute;
+    z-index: 9999;
+    display: none;
+}
+.myEmoji img{ border:1px solid #ccc;padding: 4px;}
+.mypic:hover{cursor: url(../images/enlarge.png),auto;}

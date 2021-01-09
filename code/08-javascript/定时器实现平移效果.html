@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.box{
+			height: 200px;
+			width: 300px;
+			position: absolute;
+			left: 0;
+			top: 500px;
+			background-color: pink;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var iLeft = 0;
+			var iTop = 0;
+			var iVertical = 3;
+			var iHozi = 1;
+			var oDiv = document.getElementById('box1');
+			var timer = setInterval(function(){
+				iLeft+=iVertical;
+				iTop+=iHozi;
+				oDiv.style.left = iLeft + 'px';
+				oDiv.style.top = iTop + 'px';
+				if (iLeft > 700){
+					iVertical = -3;
+					iHozi = -1;
+				}
+				else if (iLeft < 0){
+					iVertical = 3;
+					iHozi = 1;
+				}
+			},30)
+		}
+	</script>
+</head>
+<body>
+	<div class="box" id="box1"></div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        ul{
+            /*width:1500px;*/
+            margin:50px auto 0;
+        }
+
+        ul li div{
+            margin: 50px 80px 0;
+            height:300px;
+            width:300px;
+            background: cyan;
+            border:2px solid #000;
+            display: inline-block;
+        }
+
+        .div1{
+            transition:all 500ms ;
+            transform:translate(0px,0px)
+        }
+        .div1:hover{
+            transform:translate(100px,100px)
+        }
+
+        .div2{
+            transform:scale(1,1);
+            transition:all 500ms;
+        }
+        .div2:hover{
+            transform:scale(2,2);
+        }
+
+        .div3{
+            transform:rotate(0deg);
+            transition:all 500ms;
+        }
+        .div3:hover{
+            transform:rotate(90deg);
+        }
+
+        .div4{
+            transform:skew(0,0);
+            transition:all 500ms;
+        }
+        .div4:hover{
+            transform:skew(45deg,0);
+        }
+
+        .div5{
+            transform:rotate(0deg);
+            transition:all 500ms;
+        }
+        .div5:hover{
+            transform:rotate(90deg);
+        }
+
+        .div6{
+            transform:rotate(0deg);
+            transition:all 500ms;
+            transform-origin: 0 0;
+        }
+        .div6:hover{
+            transform:rotate(90deg);
+        }
+
+        .div6{
+            transform:rotate(0deg);
+            transition:all 500ms;
+            transform-origin: left center;
+        }
+        .div6:hover{
+            transform:rotate(90deg);
+        }
+
+        .div7{
+            transform:rotate(0deg);
+            transition:all 500ms;
+            transform-origin: left bottom;
+        }
+        .div7:hover{
+            transform:rotate(90deg);
+        }
+
+        .div8{
+            transform:rotate(0deg);
+            transition:all 500ms;
+            transform-origin:100px 100px;
+        }
+        .div8:hover{
+            transform:rotate(90deg);
+        }
+
+        .div9{
+            -webkit-transform: perspective(800px) rotateX(0deg);
+            -moz-transform: perspective(800px) rotateX(0deg);
+            -ms-transform: perspective(800px) rotateX(0deg);
+            -o-transform: perspective(800px) rotateX(0deg);
+            transform: perspective(800px) rotateX(0deg);
+            transition:all 500ms ease;
+            transform-style:preserve-3d;
+            /*transform-origin: left center;*/
+        }
+        .div9:hover{
+            transform:perspective(800px) rotateX(45deg);
+        }
+
+        .div10{
+            -webkit-transform: perspective(800px) rotateY(0deg);
+            -moz-transform: perspective(800px) rotateY(0deg);
+            -ms-transform: perspective(800px) rotateY(0deg);
+            -o-transform: perspective(800px) rotateY(0deg);
+            transform: perspective(800px) rotateY(0deg);
+            transition:all 500ms ease;
+            transform-style:preserve-3d;
+            /*transform-origin: left center;*/
+        }
+        .div10:hover{
+            transform:perspective(800px) rotateY(45deg);
+        }
+    </style>
+
+</head>
+<body>
+<ul>
+    <li>
+        <div class="div1"></div>
+        <div class="div2"></div>
+        <div class="div3"></div>
+        <div class="div4"></div>
+    </li>
+    <li>
+        <div class="div5"></div>
+        <div class="div6"></div>
+        <div class="div7"></div>
+        <div class="div8"></div>
+    </li>
+    <li>
+        <div class="div9"></div>
+        <div class="div10"></div>
+        <div class="div11"></div>
+        <div class="div12"></div>
+    </li>
+    <li>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.header{
+			height: 200px;
+			width: 900px;
+			background-color: cyan;
+			margin: 0 auto;
+		}
+		.menu{
+			height: 80px;
+			width: 900px;
+			background-color: gold;
+			margin: 0 auto;
+			line-height: 80px;
+			text-align: center;
+		}
+		.back{
+			height: 80px;
+			width: 900px;
+			background-color: gold;
+			margin: 0 auto;
+			display: none;
+		}
+		p{
+			color:red;
+			text-align: center;
+		}
+		.btn{
+			height: 50px;
+			width:50px;
+			border-radius: 50%;
+			background-color: green;
+			position: fixed;
+			left: 1400px;
+			top: 600px;
+			line-height: 50px;
+			text-align: center;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(window).scroll(function(event) {
+				/* Act on the event */
+				var scroll_height = $(window).scrollTop();
+
+
+				if (scroll_height>200) {
+					$('.menu').css({
+						'position':'fixed',
+						'left':'50%',
+						'margin-left':'-450px',
+						'top':'0',
+					});
+					$('.back').show();
+				}
+				else{
+					$('.menu').css({
+						'position': 'static',
+						// 'margin-left':'-450px'
+						'margin-left':'auto'
+					});
+					$('.back').hide();
+				}
+				if (scroll_height>400){
+					$('.btn').show();
+				}
+			});
+
+			$('.btn').click(function(event) {
+				/* Act on the event */
+				$('html,body').animate({
+					'scrollTop': 0});
+			});
+		})
+	</script>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="menu">菜单</div>
+	<div class="bcak"></div>
+	<div class="btn">👆</div>
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<p>文档内容</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />	
+</body>
+</html>

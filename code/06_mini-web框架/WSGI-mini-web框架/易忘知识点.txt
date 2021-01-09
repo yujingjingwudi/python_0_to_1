@@ -1,0 +1,33 @@
+
+动态网页和静态网页：
+    如果浏览器请求的是一个页面，一张图片，叫请求的静态资源
+    如果浏览器请求的资源是请求之后生成的，这个叫动态资源
+
+
+WSGI协议：
+    实现了服务器和框架的解耦
+
+有名的服务器：
+    nginx
+    apache
+    服务器负责接受浏览器的请求
+
+HTTP的处理过程：
+    1.http请求动态资源
+    2.web服务器收到后，调用应用程序框架的application方法，application(env,fun_c)
+    env是一个字典，fun_c是服务器中的函数在调用fun_c的时候，会送回header，之后执行application方法之后，会将body作为返回值返回
+
+定义wsgi接口：
+    def = application(environ, start_response):
+        start_response('200 OK', [('Content-Type','text/html')])
+        return 'Hello,world'
+
+主要知识点：
+    python3打开文件的路径是以入口文件为主，即使调用了别的文件夹里的模块，别的文件夹的里py文件也要入口文件来
+
+在shell中给程序传参:
+    import sys
+    sys.argv()
+    frame = __import__(frame_name): 倒入模块，返回值是一个对象，标记着这个模块
+    app = getattr(frame, app_name): 在frame模块中寻找app的方法，返回值是这个方法
+    sys.path.append(目录)                # sys.path返回的是一个列表，把目录倒入到这个列表中，程序将来导入模块会到该目录下找

@@ -1,0 +1,500 @@
+	MVC框架
+1.理念：分工
+2.核心思想：解耦
+3.M:模型：与数据库交互
+  V:视图:产生html页面
+  C:控制：接受请求，进行处理，与M与C交互
+
+Django
+	1.MVT框架:template,模板
+	2.原则;快速开发和DRY原则。Dont repeat yourself不要重复一些工作
+
+	项目创建：django-admin start project + 项目名
+	应用创建：一个项目由很多应用组成的，每个应用完成一个特定的功能
+			 python manage.py startapp + 应用名
+			 添加应用之后要在setting.py中注册
+	项目运行：python manage.py runserver
+
+	3.项目结构:
+		settings:配置文件
+		urls:url路由配置
+		wsgi:web服务器和django交互的入口
+		manage:项目的管理文件
+
+	4.应用结构：
+		__init__:说明目录
+		model:数据库相关内容
+		view:视图函数定义处理函数
+		test:测试代码
+		admin:后台管理
+
+	5.ORM(object relation mapping映射)
+		通过类和对象操作数据表，不适用sql语句
+		django内嵌了ORM框架，ORM框架可以将类和数据表对应起来，只需要通过类和对象就可以对数据表进行操作
+		orm另一个作用，根据设计的类生成数据库中的表
+
+	6.模型类设计
+		在model.py中设计
+		继承Model.model
+		1)设计bookinfo表
+		2)设计heroinfo表
+		model.foreignKey可以建立两个模型间一对多的关系，djaogo在生成表的时候就会在多的表中创造一列外键,django2.0版本以后需要添加on_delete参数，否则会报错
+
+		模型类生成表
+			1)生成迁移文件
+				python manage.py makemigrations
+			2)执行迁移生成表
+				python manage.py migrate	
+
+		通过模型类操作数据表
+			1)进入项目shell命令
+				python manage.py shell
+			2)from booktest.model import BookInfo
+				b = BookInfo()
+				b.btitle = 'xxx'
+				b.bpub_date = 'xxx'
+				b.save()
+				b2 = BookInfo.objects.get(id=1) //查询，返回值是一个对象
+				b2.btitle
+				b2.delete //删除整条数据
+			3)存在一对多关系的时候
+				由一查多：b.heroinfo_set.all()
+				由多查一：h.hbook	
+			4)查找表内所有内容
+				Bookinfo.object.all()
+
+		后台管理：
+			1)本地化：语言和时区的本地化,修改setting.py
+				‘zh-hans' 'Asia-Shanghai'
+			2)管理员账户，创建管理员
+				python manage.py createsuperuser
+			3)注册模型类
+				在admin.py中注册（admin.site.register)
+			4)自定义管理页面
+
+
+		视图：
+			使用视图函数处理请求，并返回内容
+			1)定义视图函数
+				在views.py中
+				def index(request):
+					return HttpResponse('hello,python')
+			2)配置url
+				1.所有的url配置都定义在一个urlpatterns的列表
+				2.每个配置项都会调用url参数，第一个是正则，第二个是处理动作
+				3.和url字符串进行匹配，匹配成功则执行动作
+				4.对应的动作可以是一个视图函数的名字，或者一个应用的urls.pytho文件
+			3)url匹配过程
+				1.先匹配项目中的，在匹配应用中的
+			4)重定向
+				1.from shortcut import redirect
+				  from http import HttpresponseRedirect
+		模板:
+			1)创建末班文件夹
+			2)配置模板目录：setting.py中添加
+				os.path.join(BASE_DIR,'templates')
+			3)使用模板文件：
+				1加载模板文件
+					temp = loader.get_template('booktest/index.html')
+				2定义模板上下文
+					context = RequestContext(request,{})
+				3模板渲染
+					res_html = temp.render(context)
+				return HttpResponse(res_html)
+			4)给模板传递数据
+				{{模板变量名}}	
+				{%模板代码段%}
+				{%for i in list%}
+				{%endfor%}
+		
+		使用mysql数据库
+		1)setting.py
+			DATABASES = {
+			    'default': {
+			        'ENGINE':'django.db.backends.mysql',
+			        'NAME':'my_wife',
+			        'USER':'root',
+			        'PASSWORD':'19970806',
+			        'HOST':'localhost',
+			        'PORT':3306,
+			    }
+			}
+		__init__.py
+			import pymysql
+			pymysql.install_as_MySQLdb()
+
+
+		字段属性，选项
+		1) 不能使python保留字
+		2) 不能出现连续下划线
+		3) 字段类型：需要时使用django.db.model
+		   autoField:自动增长的IntegerField
+		   BooleanField:
+		   NullBooleanField:
+		   CharField(max_length=最大长度)
+		   TextField:大文本类型
+		   IntegerField:
+		   DecimalField(max_digits=None,decimal_places=None):最大位数，小数位数
+		   FloatField 浮点数
+		   DateField:auto_now_False,auto_now_add=False 年月日
+		   TimeField:小时分秒
+		   DateTimeField:年月日时分秒
+		   FileField:
+		   ImageField:
+		   选项：
+		   default:
+		   primary_key:
+		   unique
+		   db_index 建表会添加索引
+		   db_column 制定表字段的名字
+		   null 是否允许为空
+		   blank 如果为True,表示允许为空白，与后台管理有关
+
+		   查询：
+		   修改mysql日志文件：
+		   让其产生mysql.log，即mysql的日志文件，里面记录着对mysql数据库的操作记录。
+		   1.打开mysql配置文件，取出68,69行注释，
+		     sudo vi /etc/mysql/mysql.conf.d/mysqld.conf
+		   2.重启mysql服务，就会产生mysql日志文件
+		     sudo service mysql restart
+		   3.打开日志文件
+		   	 /var/log/mysql/mysql.log
+
+		   model查询：
+		   models.object.get 返回满足条件的语句，只能有一个结果，否则抛出异常
+		   models.object.all 返回值是一个查询集
+		   models.object.filter
+		   models.object.exclude 返回不满足条件的数据
+		   models.object.order_by 根据哪些字段排序
+		   filter方法掩饰：
+		   条件格式：	
+		   		模型类属性名__条件名=值
+		   1)判等 条件名:exact
+		   2)模糊查询 contain:包含 startwith,endwith
+		   3)空查询 isnull
+		   4)范围查询 in
+		   5)比较查询 gt(>) lt(<) gte(>=) lte(<=)
+		   6)日期查询
+		   		查询1980发行的图书：
+		   		BookInfo.objects.filter(bpub_date__year=1980)
+		   		查询1980年1月1号以后发表的图书
+		   		BookInfo.objects.filter(bpub_date__gt=date(1980,1,1))
+
+		   7)Q对象：用于查询时，条件间的逻辑关系not and or ~（非）
+		   		使用前先导入from django.db.models import Q
+
+		   8)F对象：用于类属性之间的比较
+		   		查询图书阅读量大于两倍评论量图书信息
+		   		BookInfo.objects.filter(bread__gt=F('comment')*2)
+		   9)聚合函数
+		   		sum count avg max min
+		   		aggregate:调用此函数进行聚合
+		   		from django.db.models import Sum,Count,max,Min,Avg
+		   		BookInfo.objects.all().aggregate(Count('id'))
+		   		返回的是字典
+		   		count函数，统计满足条件数据的数目，返回值是数字
+		   10)查询集
+		   		all,filter,exclude,order_by
+		   		特点：
+		   		1惰性查询，使用时才真正查询
+		   		2缓存，使用同一个查询集时，第一次使用的时候会把结果存起来，之后再使用这个查询集的时候，使用的是缓存中的结果
+
+		   		限制查询集：可以切片
+		   		exists:判断查询集内是否有数据	
+
+
+		   	模型类关系：
+		   	1)一对多关系
+		   		models.ForeignKey() 定义在多的类
+		   	2)多对多关系
+		   		models.ManyToManyField() 定义在哪个类都可以
+		   	3)一对一关系
+		   		models.OneToOneField() 定义在哪个类都可以
+
+		   	关联查询(一对多)
+		   	查询图书信息，要求图书关联的英雄的描述包含'八'
+		   	BookInfo.objects.filter(heroinfo__hcomment__contain'八')
+		   	注意：1.通过模型类实现关联查询时，要查哪个表中的数据，就需要通过哪个类来查。
+		   	2.写关联查询条件的时候，如果类中没有关系属性，条件需要些对应类的名，如果类中有关系属性，直接写关系属性
+
+		   	自关联
+		   	自关联是一种特殊的一对多关系
+		   	省市区县
+		   	area = AreaInfo.objects.get(title="广州市")
+		   	parent = area.aParent
+		   	children = area.areainfo_set.all()
+
+		   	管理器： objects objects是Django自动生成的管理器对象，通过这个对象可以实现对数据的查询
+		   	管理器类中,self.model获取self所在模型类的名称
+		   	用法1)自定义一个管理器类，继承model.Manger
+		   	   2)在具体的模型类里定义一个自定义管理器的类对象
+
+		   	应用场景：改变查询的结果集：如A.objects.all()
+		   			 添加额外的方法：如create_book()
+
+		   	元选项：
+		   		class Meta:
+		   			db_table = 'bookinfo' # 制定模型类对应的表名
+
+		   	视图：
+		   	1.视图的功能：
+		   		接受请求，进行处理，与m和t进行交互，返回应答
+		   		返回html内容HttpResponse，或重定向或JsonResponse
+		   	2.1使用：
+		   		1)定义视图函数：
+		   			request参数，是一个HttpResquest类型的对象
+		   		2)配置url
+		   	3.404错误，url没有配置或者配置错误
+		   	  500错误，视图中有错误
+		   	4.setting中有个debug参数
+		   	5.request：是HttpResquest对象：包含浏览器请求信息，存放着浏览器的请求信息
+		   	  request.POST 保存的是post提交的参数
+		   	  request.GET 曹存的是get提交的参数 类型是QuertDict
+		   	  取值方法：Dict['a'] 如果有值，返回，如果没值，报错
+		   	  		   Dict.get('a'，123)不会报错，如果没值，则赋值
+		   	  		  QueryDict一个键可以对应多个值：Dict.getlist
+		   	  request.method
+		   	  request.path 返回路径
+		   	  request.recoding 编码方式
+		   	  file，cookie，session
+
+
+
+		   	  xxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+
+		   模板：
+		   1.模板功能：产生html，模板文件不是仅一个html
+		   		1)静态内容，css,js,html
+		   		2)动态内容，用于动态去产生一些内容，通过模板语言产生
+
+		   2.模板文件的使用：通常是在视图函数中使用模板产生html内容返回给客服端
+		   		a)加载模板文件：loader.get_template
+		   			获取模板文件内容，产生一个模板对象
+		   		b)定义模板上下文：RequestContext
+		   			给模板文件传递数据
+		   		c)模板渲染产生html页面内容render
+		   			用传递的数据代替相应的变量，产生一个替换后的变种html内容
+
+		   3.模板加载的顺序：
+		   		1)先去配置的模板目录下面去找模板文件
+		   		2)去INSTALL_APPS中的每个应用去找模板文件，前提是应用中得含有template文件夹
+
+		   4.模板语言：DTL
+		   		4.1变量名是由数字字母下划线组成，不能以下划线开头
+		   			模板变量{{book.btitle	}}
+		   			1)首先把book当字典
+		   			2)把book当成一个对象，btitle当属性
+		   			3)把book当成一个对象，btitle当方法
+		   			{{book.0}}
+		   			1)把book当字典，0当键
+		   			2)把book当列表，0当下标	
+		   		4.2模板标签
+		   			{% 代码段 %}
+		   			for循环
+		   			{% for x in 列表 %}
+		   			# 列表不为空的时候	执行
+		   			{% endfor %}
+		   			可以通过{{forloop.counter}}得到for循环遍历到了第几次
+		   			{% if 条件 %}
+		   			{% elif 条件 %}
+		   			{% else 条件 %}
+		   			{% endif 条件 %}
+		   			关系操作符：> < = == !=
+		   			逻辑运算：not and or
+		   		4.3过滤器
+		   			过滤器用于对模板变量进行操作
+		   			date:改变日期的显示格式
+		   			length:求长度,字符串,列表
+		   			default:模板变量|过滤器：参数
+		   		4.4自定义过滤器
+		   			1)新建一个tamplatetags目录，在其中新建一个py文件，templatetags和models同级
+		   			2)过滤器本质是python函数
+		   				from django.tamplate import library
+		   			3)创建一个library对象
+		   				@register.filter
+		   				def mod(num):
+		   					return num%2 == 0
+		   			4)在模板文件中加载
+		   				{% load python文件名 %}
+		   			(自定义的过滤器，参数1-2个)
+		   		4.5模板注释
+		   			单行注释：{#　ｘｘｘｘｘ　＃}
+		   			多行注释：{% content %}
+		   					xxxx
+		   					{% endcontent %}
+		   		4.6模板继承
+		  			目的：重用相同的html页面内容
+		   			{% extends 'app_name/base.html' %}
+		   			１)页面不同的位置，需要在父模板中预留位子，预留块
+		   				{% block 块名 %}
+		   				{% endblock 块名　%}
+		   				{% block.super %}
+
+		   		4.7html转义
+		   			在模板上下文中的html标记默认是转义的
+		   			如果参数的上下文包含标签这样的话，需要关闭html转义 {{模板变量|safe}}
+		   			或
+		   			{{% autoescape %}}
+		   			{{% endautoescape %}}
+		   			模板硬编码不会进行转义，如果需要转义需手动进行
+	6.csrf攻击：
+		 csrf只针对post提交
+		 csrf伪造：点击了目标网站，又点击了第三方网站的控件，第三方网站会伪造地址，修改密码
+		 django防止crsf的方式；
+		 	1)默认打开crsf中间件
+		 	2)表单post提交数据时加上{% crsf_token %})标签
+		 防御原理：
+		 	1)渲染模板文件时生成一个crsfmiddlewaretoken的隐藏域
+		 	2)服务器交给浏览器保存一个名字为crsftoken的cookie信息
+		 	3)提交表单时，两个值都会发给服务器，服务器进行比对，一样则crsf认证通过
+	8.验证码：
+		目的是防止暴力请求
+	9.url反向解析：
+		当一个url配置的地址发生变化时，页面上使用反向解析生成地址的位置不需要变化
+		目的：根据正则表达式的配置动态的生成url
+		在项目url中包含具体应用的urls文件制定的namespace，
+		在应用的urls中配置name
+		在模板文件中使用:{% url'namespace 名字：name' %} 例如{% url 'booktest:fan2' 1 %}
+		带关键字参数：
+		{% url 'namespace 名字：name' 关键字参数　%	} 如{% url 'booktest:fun2' id=1 %}
+		重定向的时候反向解析
+		from django.urls import reverse
+		无参数：reverse('namespace名字':name名字)
+		如果有位子参数：reverse('namespace名字':name名字，args=位子参数元祖)
+		关键字参数：reverse('namespace名字':name名字，kwargs=字典	)
+
+
+
+	其他文件：
+		１.静态文件
+		1.1使用
+			在网页使用的css文件，js文件和图片叫做静态文件
+			1)新建文件夹static
+			2)设置静态文件所在的物理目录，setting.py
+				STATIC_URL = 'abc'
+				STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+				STATIC_UTL设置访问静态文件的url。
+				staticfiles_dirs设置静态文件所在的物理目录
+		1.2加载目录
+			STATIC_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder'), 'django.contrib.staticfiles.finder.AppDirectoriesFinder'
+			先查找setting下的，再查找应用下的static文件夹
+		1.3动态获取STATIC_URL
+			{% load staticfiles %}
+			<img src = "{% static 'images/mm.jpg' %}"
+			}
+
+		2.中间件
+			django给我们预留的函数接口，让我们可以干预请求应答的过程
+			2.1获取浏览器端的IP地址
+				request.META['remote_addr	']
+			2.2中间件的使用：
+				1)新建middleware.py文件(与models.py并列)
+				2)定义中间件类：
+					在类中定义中间件预留函数
+					__init__:服务器相应第一个请求时调用
+					process__request:产生request对象，进行url匹配前调用
+					process__view:url匹配之后，调用视图函数之前
+					process__response:视图函数调用之后，返回给浏览器之前
+					process__exception:视图函数出现异常时	
+				3)请求处理过程：
+					1产生request对象
+					2调用中间件的process_request
+					3url匹配
+					4调用中间件的process_view
+					5调用view
+					5调用中间件的process_response
+
+		3.后台
+			3.1使用：
+				1)本地化
+				2)创建创建超级管理员
+				3)注册模型类
+				4)自定义管理界面
+				  自定义模型管理类
+				  注册模型时给register函数添加第二个参数，就是自定义模型管理类的名字
+			3.2
+				class AreaInfo(models.Model):
+					atitle = models.CharField(verbose_name='标题',max_length=20)
+					aparent = models.ForeignKey('self', null=Ture, blank=True)
+
+				def __str__(self):
+					return self.atitle
+
+				def title(self):
+					return self.atitle
+				title.admin_order_field = 'atitle'
+				title.short_description = '地区名称'
+
+				def parent(self):
+					return self.aParent.atitle
+				parent.short_description = '父级名称名称'
+
+				class AreaInfoAdmin(admin.ModelAdmin):
+					list_per_page = 10 #每页显示的数量
+					list_display = ['id','atitle','title','parent']
+					actions_on_bottom = True
+					list_filter = ['atitle']
+					search_filter = ['atitle'] 
+				admin.site.register(AreaInfo, AreaInfoAdmin )
+
+				编辑页选项
+				field = ['id','title']
+				field = (
+					('基本',{'field':['titile']}),
+					('高级',{'field':['parent']}),
+				)
+				inline = [AreaStackedInline]
+
+				显示下级（一对多中的多）：
+					class AreaStackedInline(admin.Stackedinline):
+					model = bookInfo
+					extra = 2
+
+			4.上传图片：
+				4.1配置上传文件保存目录
+					1)新建上传文件保存目录
+						static下与css并列
+					2)配置
+						MEDIA_ROOT = os.path.join(BASE_DIR,'static/media')  
+				4.2后台管理上传图片
+					1)设计模型类
+				4.3用户自定义页面上传图片
+					1)定义用户上传图片的页面，定义一个表单
+					<form method="post" action="/uplord_action/" enctype="multipart/form-data"
+					2)定义接受上传文件的视图函数
+						pic = request.FILES['pic']
+						2.5m以内存放在内存
+						2.5m以上存放在一个临时文件中
+						pic.name #获取上传文件名字
+						pic.chunks() #返回值是一个生成器
+
+			5.分页：
+				from jango.core.paginator import paginator
+
+				1.查询所有的数据信息
+				areas = AreaInfo.objects.filter(aParent__isnull=True)
+				2.分页，每页显示10条
+				paginator = Paginator(areas, 10)
+				3.获取第一页的内容
+				page = paginator.page(1) 返回一个查询集
+
+
+				Paginator类对象的属性：
+				num_pages         返回分页之后的总页数
+				page_range	      返回分页后页码的列表
+				Paginator类对象的方法：
+				page(self,number) 返回第number页的page类实例对象
+
+				Page类对象的属性：
+				number            返回当前页的页码
+				object_list       返回当前页的数据的查询集
+				Paginator         返回对应的paginator对象
+
+				Page类对象的方法：
+				has_previous      判断当前页是否有前一页
+				has_next          判断当前页是否有前一页
+				previous_page_number  返回前一页的页码
+				next_page_number  返回后一页的页码

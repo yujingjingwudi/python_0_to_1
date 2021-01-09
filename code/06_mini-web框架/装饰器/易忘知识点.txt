@@ -1,0 +1,26 @@
+装饰器：
+    开放封闭原则：已经实现的代码功能不允许被修改，但可以被扩展
+    封闭：已实现的代码块
+    开放：对扩展开发
+    装饰起作用：能在不修改函数代码的情况下，对它加工
+    装饰器在执行之前已经装好了，遇到@func就装
+
+
+     # 一个函数同时被两个装饰器装饰时候，先装载下面的后装载上面的，先执行上面的，在装载下面的
+
+
+
+    带有参数的装饰器
+def set_level(level):
+    def set_func(function):
+        def call_function(*args,**kwargs)
+            print("-------*--------")
+            return function()
+        return call_function
+    return set_func
+
+
+    @set_fun1(1)            1.调用set_fun1()方法，并将1作为参数传递2.用上一步调用的返回值，当做张诗琪对test1函数进行装饰，三重套娃
+    def test1():
+        print("------test1--------")
+        return "ok"

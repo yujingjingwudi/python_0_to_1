@@ -1,0 +1,109 @@
+CSS transition动画
+1.transition-property 设置过渡的属性，比如：width height backgroud-color
+2.transition-duration 设置过度的时间，比如：1s 500ms
+3.transition-timing-function 设置过渡的运动方式，常用有linear和ease
+4.transition-delay 设置动画的延迟
+5.transition:property duration timing-function delay 同时设置四种属性
+
+圆角：
+border-top-left-radius:30px,60px;
+border-radius:30px,40px,50px,60px;同时设置四个角
+border-radius:50%;四个角相同
+
+透明：
+opacity:0.3;
+filter:alpha(opacity=30);  //兼容ie，整体肉名
+rgba(0,0,0,0.3)
+
+transform变换：
+1.translate:设置盒子位移：性能比定位方法的性能高，不影响布局，不需要重新渲染
+2.scale(x,y):设置盒子缩放
+3.rotate(deg):设置盒子旋转
+  可以配合tranform-origin使用：设置旋转中心点
+4.skew(x-angle,y-angle):设置盒子斜切
+5.rotateX,rotateY,rotateZ设置三维旋转
+  perspective设置透视距离,配合旋转使用
+
+animation动画：
+1.@keyframes定义关键帧动画
+2.animation-name动画名称
+3.animation-dutation动画时间
+4.animation-timing-function 动画曲线linear(匀速)ease(缓冲)steps(步数)
+5.animation-delay动画延时
+6.animation-iteration-count 动画播放次数 n|infinite
+7.animation-direction 动画结束后是否反向还原 normal|alternate
+8.animation-play-state 动画状态paused(停止) running(运动)
+9.animation-fill-model 动画运动前后的状态 none(缺省)|forward(结束停留在最后一帧)|backwards(开始停留在定义的开始帧)|both(前后都应用)
+10.animation:name duration timing-function delay iteration-count direction 同时设置多个属性
+
+选择器：
+1. .class选择class = "class"的所有元素
+2. #id选择id = "id"的元素
+3. *选择所有元素
+4. p选择所有p标签
+5. div,p选择所有div标签和p标签
+6. div p选择所有div标签下的p标签
+7. div~p与div为兄弟的所有p标签
+7. div>p选择父元素为div的p标签
+8. div+p选择紧接在div之后的p标签
+9. [target]选择所有带有target属性的标签
+10.[target=_blank]选择target="_blank"的所有元素
+11.[target~=_blank]target属性包含_blank的元素
+12.[lang|=en]选择lang属性以"en"开头的所有元素
+
+权重值
+1.import，加载样式后，权重值10000
+2.内联样式，style=""，权重值1000
+3.ID选择器，#content，权重值100
+4.类，伪类和属性选择器，权重值10
+5.标签选择器，伪元素选择器 div，p 权重值1
+6.通用选择器，子选择器，相邻选择器，同胞选择器，权重值0
+
+移动端页面开发
+1.视口：视口是移动设备上显示网页的区域，网页先通过视口渲染，然后缩放到手机上，默认视口大小可能为980px或者1024px
+  设置视口快捷键 meta:vp + tab
+2.视网膜屏幕解决方法（retina屏幕）清晰度解决方法：用大一倍的图片缩放到retina屏幕上，背景图的设配方法是使用background-size属性
+  background两个属性：cover，contain
+3.适配方案：1.全适配：一个页面，三个终端用 响应式布局+流体布局
+           2.移动端适配：1.流体布局+少量响应式2.基于rem的布局
+4.流体布局：用百分比设置元素的宽度，高度写固定值，边线无法使用百分比，采用calc()计算或者使用box-sizeing属性将盒子设置成从边线开始计算
+5.响应式布局：
+    @media (max-width:800px){
+        .con div{
+
+        }
+    }
+
+
+基于rem的编程
+1.em:em是个单位，是参照自身文字的大小来设置尺寸，rem指的是参考根节点的文字大小
+
+新增标签：
+<header>页面头部，页眉
+<nav>页面导航
+<artical>一篇文章
+<section>文章里面的章节
+<aside>侧边栏
+<footer>页脚
+<audio>
+<video>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/html5shiv/r29/html5.js"></script>
+
+新增表单控件
+<input="url">
+<input="email">
+<input="data">
+<input="time">
+<input="week">
+<input="number">
+<input="range">
+<input="tel">
+<input="color">
+<input="search">
+
+新增表单控件属性：
+placeholder:设置文本框默认提示文字
+autofocus:自动获得焦点
+autocomplete:

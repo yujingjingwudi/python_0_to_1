@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url: 'data_jsonp.json',
+				type: 'get',
+				dataType: 'jsonp',
+				jsonpCallback:'fnBack'
+			})
+			.done(function(dat) {
+				$('h1').html(dat.name);
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		})
+	</script>
+	<title>Document</title>
+</head>
+<body>
+	<h1></h1>
+</body>
+</html>

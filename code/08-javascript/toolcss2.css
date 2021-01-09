@@ -1,0 +1,12 @@
+input{
+	background-color: blue;
+	height: 50px;
+	border-radius: 10px;
+	width: 200px;
+    border:0;
+    color: #fff;
+}
+
+body{
+	background-color: pink;
+}

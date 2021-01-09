@@ -1,0 +1,131 @@
+1.引入方式
+    行间事件 <input type="button" value="点击" onclick="alert('嬲')>
+    内敛事件
+    外联事件F:\python\code\07_html和css\js\知识点.txt
+
+
+2.常用方法：alert("hello,world")
+		   parseInt() //将int类型转换成字符串类型
+
+3.javascript是弱类型语言
+
+
+4.命名规范：
+	1.区分大小写
+	2.第一个字符必须是字母，下划线或者$
+	3.其他字符可以是字母，下划线，美元符号，或者美分
+
+5.匈牙利命令法：
+	 第一个字符代表元素类型
+
+6.注释: // /* */
+
+7.基本类型： int,string,bollean,undefined(变量申明，但未赋值，他的值就是undefined,null(表示空对象)
+  复合类型： object
+
+8.获取元素：
+	document.getElementById()  //由于html是一行一行的读的，通常javascript放在header里，所以会报
+	解决方法：外面套一层
+		window.onload = function(){
+		}
+
+9.操作元素属性：
+	1.点操作：操作class属性为object.className
+	2.属性用变量来代替的话，用中括号来操作
+	3.更改标签之间夹着的内容，使用innerhtml属性
+
+10.只执行一次的函数，采用匿名函数的定义方法
+
+11.预解析：预解析会让变量的申明提前，但不会让赋值提前
+				会让函数的申明和定义提前
+
+12.字符串的加法是把加法拼接
+
+13.js中：字符串类型的5和int类型的5使用==判断的时候，返回的是ture，而===
+
+14.switch语句比连续的if else效率高
+
+15.数组：
+	定义方法：
+		var alist = new Array(1,2,3);
+		var alist = [1,2,3];
+	数组方法：
+		alist.length;
+		alist[n];
+		alist.join('-'); /将数组成员通过分隔符合并成字符串
+		alist.push,alist.pop /从最后添加或者删除成员
+		alist.unshift,shift() /从前面增加或者删除成员
+		alist.reverse() /数组反转
+		alist.index() /查询索引值
+		alist.splice() 例子：alist = [1,2,3,4]
+							alist.splice(2,1,7,8,9) /从第二个元素开始，删除一个元素，然后在这个位置添加789 
+15.通过标签获取元素： getElementsByYagName
+
+16.javascript组成：
+	1.ECMAscript javascript语法(变量函数，循环语句)
+	2.DOM文档对应语言
+	3.BOM浏览器对象模型操作浏览器的一些方法
+
+17.字符串操作
+	1.+ 合并操作
+	2.parseInt()将字符串转化成整数
+	3.parseFloat()转化成float
+	4.aplit()分割成数组
+	5.charAt()获取字符串里的某一字符
+	6.indexOf()查找字符串是否含某字符
+	7.substring(start,end)截取字符串
+	8.toUpperCase()字符串转大写
+	9.toLowerCase()字符串转小写	
+
+18.定时器
+	1.制作动漫
+	2.异步操作
+	3.函数缓冲与节流
+	setTimeout 只执行一次的定时器
+	clearTimeout 关闭只执行一次的定时器
+	setInterval  反复执行的定时器
+	clearInterval关闭仿佛至新法的定时器
+
+19:时钟对象
+	1.var now = Date()
+	2.now.getFullYear();
+	3.now.getMonth()+1;
+	4.now.getDate();
+	5.now.getDay();  //获取星期
+	6.now.getHours();
+	7.now.getMinute();
+	8.now.getSecords();
+
+20:封闭函数：可以减少一些命名冲突
+	(function(){
+		alert('abc');
+	})();
+	再已上线的网站中添加功能，通常是采用封闭函数
+	封闭函数的其他写法：
+	！function(){
+		alert('abc');
+	}();
+	~function(){
+		alert('abc');
+	}();
+
+21:常用内置对象：
+	1.document
+		document.getElementById
+		document.getElementByTagName
+		document.referrer    //保存上个网页的url 
+	2.location
+		window.location.href //获取或者重定向url地址
+		window.location.search //获取地址参数部分
+		window.location.hash //获取页面锚点(哈希值)
+
+22:math:
+	Math.random 获取0-1的随机数
+	Math.floor 向下取整
+	Math.ceil 向上取M
+
+23:调试方法：
+	1.alert //alert会组织程序的运行
+	2.console.log
+	3.document.title 
+

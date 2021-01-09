@@ -1,0 +1,1 @@
+python  rem_02_伪静态.py 7890 mini_web:application

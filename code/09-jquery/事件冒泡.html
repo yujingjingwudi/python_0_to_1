@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.grandpa{
+			height: 300px;
+			width: 300px; 
+			background-color: cyan;
+			position: relative;
+		}
+		.father{
+			height: 200px;
+			width:200px;
+			background-color: red;
+			position: absolute;
+			top: 400px;
+		}
+		.son{
+			height: 100px;
+			width: 100px;
+			background-color: green;
+			position: absolute;
+			left: 400px;
+		}
+		
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.son').click(function(event) {
+				/* Act on the event */
+				alert(1);
+			});
+			$('.father').click(function(event) {
+				/* Act on the event */
+				alert(2);
+			});
+			$('.grandpa').click(function(event) {
+				/* Act on the eventa*/
+				alert(3);
+			}); 
+		})
+	</script>
+</head>		
+<body>
+	<div class="grandpa">
+		<div class="father">
+			<div class="son"></div>
+		</div>
+	</div>
+</body>
+</html>

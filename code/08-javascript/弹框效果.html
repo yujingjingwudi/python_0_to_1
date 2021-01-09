@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var inum = 4;
+            var obtn1 = document.getElementById('btn1');
+            var otanchuang = document.getElementById('pop');
+            var oP = document.getElementById('itemp');
+            obtn1.onclick = function(){
+                otanchuang.style.display = 'block';
+                var timer = setInterval(function(){
+                    if (inum>0){
+                        sTr = '还有'+ inum +'s钟关闭窗口';
+                        oP.innerHTML = sTr;
+                        inum--;
+                    }
+                    else{
+                        inum=4;
+                        otanchuang.style.display = 'none';
+                        clearInterval(timer);
+                        oP.innerHTML = '还有5s钟关闭窗口';
+                    }
+                },1000)
+            }
+        }
+    </script>
+    <style type="text/css" >
+        .meal{
+            height:50px;
+            width:800px;
+            background: gold;
+            position:fixed;
+            left:50%;
+            top:0;
+            margin-left:-400px;
+
+        }
+
+        .box{
+            height:200px;
+            width:300px;
+            border:1px solid #000;
+            position: fixed;
+            left:50%;
+            margin-left:-150px;
+            top:50%;
+            background: #fff;
+            margin-top:-100px;
+            z-index: 999;
+
+        }
+
+        .box div{
+            background: gold;
+            font-weight:bold;
+            margin:10px;
+        }
+
+        /*设置其余页面暗下去的效果*/
+
+        .mask{
+            height:100%;
+            width:100%;
+            background: #000;
+            opacity:0.5;
+            position: fixed;
+            top:0;
+            left:0;
+            z-index: 998;
+        }
+
+        .pop_box{
+            /*设置开关是否弹出对话框*/
+            display: none;
+            /*display: none*/
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="meal">悬浮菜单</div>
+    <div class="pop_box" id="pop">
+        <div class="box">
+            <div>弹框的标题</div>
+            <p style="text-align: center;padding:0" id="itemp">还有5s钟关闭窗口</p>
+        </div>
+        <div class="mask"></div>
+    </div>
+    <input type="button" name="弹出弹窗"  value="弹出弹窗" id="btn1">
+
+</body>
+</html>

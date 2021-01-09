@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script type=""text/javascript>
+		window.onload = function(){
+			oDiv = document.getElementById('box');
+			oInput1 = document.getElementById('text1');
+			oInput2 = document.getElementById('text2');
+			obtn1 = document.getElementById('btn');
+			//alert(oDiv.style.color);
+			
+			sWeek = 7;
+			switch(sWeek){
+				case 1:oDiv.style.color = "red";break;
+				case 2:oDiv.style.color = "green";break;
+				case 3:oDiv.style.color = "gold";break;
+				case 4:oDiv.style.color = "blue";break;
+				case 5:oDiv.style.color = "black";break;
+				case 6:oDiv.style.color = "orange";break;
+				case 7:oDiv.style.color = "pink";break;	
+			}
+
+			obtn1.onclick = function(){
+				value1 = parseInt(oInput1.value);
+				value2 = parseInt(oInput2.value);
+				alert(value1+value2);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div class="box2" id="box">这是一个div</div>
+	<input type="text" id="text1" placeholder="第一个数字">+
+	<input type="text" id="text2" placeholder="第二个数字">
+	<input type="button" id="btn" value="等于">
+
+</body>
+</html> 

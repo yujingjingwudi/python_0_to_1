@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			background-color: cyan;
+			padding: 20px;
+		}
+		.list li{
+			margin: 20px;
+			height: 30px;
+			width: 100%;
+			background-color: yellow;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			// $('.list li').click(function(event) {
+			// 	/* Act on the event */
+			// 	$(this).css({
+			// 		'background-color': 'red',
+			// 	});
+			// });
+			$('.list').delegate('li', 'click', function(event) {
+					$(this).css({
+					'background-color': 'red',
+				});
+			});
+			$new_li = '<li></li>';
+			$('.list').append($new_li);
+		})
+	</script>
+</head>
+
+<body>
+	<div class="box_con">
+		<ul class="list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+git
+
+
+1.git特点
+	1)版本控制：解决多人代码的问题，解决找回历史代码的问题
+	2)分布式：双方都有代码，集中式，只有服务器有
+
+2.git的使用
+	1)git init 初始化
+	2)创建版本 
+	  git add filename
+	  git commit -m '版本一' 版本一是描述信息
+	3)git log 查看版本记录
+	4)git reset --hard HEAD^
+		一个^代表一个
+	  git reset --hard HEAD~100
+	    回退一百个版本
+	  git reset --hard 版本号
+
+	工作区，暂存区
+	工作区：电脑上的目录
+	版本库：工作区的隐藏目录.git
+	git add是将工作区的文件放在暂存区中
+	git commit提交修改创建版本，只提交暂存区中的记录	
+	git status工作区状态
+	git checkout -- 撤销工作区修改
+	git reset HEAD 取消暂存
+	git diff 对比文件的不同
+	+ - 只是符号，没有含义
+	--- a/code.txt # head版本中的
+	+++ b/code.txt # 工作区的
+	git log --pretty=oneline 以简短的形式展示
+	删除文件
+	1rm 文件
+	2git rm 添加暂存
+	3git commit
+
+
+分支操作
+	当只有一条路径的时候，head指向master指向节点
+	创建了一天分支以后，git创建了一个新的指针，指向与master相同的节点，head指向新指针
+	新分支增删减的时候单独创建新节点
+	合并分支的时候直接让，master指向最新的节点，然后head指向master
+
+	git branch 查看有几个分支，并看到在哪个分支下工作
+
+	git checkout -b dev
+	切换到一个新分支dev
+
+	合并：
+		1)切换到主分支上
+			git checkout branch
+		2)合并git merge dev	
+	删除分支 
+		git branch -d name
+
+	命令：
+		查看分支：git branch
+		创建分支：git branch name
+		切换分支：git checkout name
+		创建切换分支：git checkout -b name
+		合并某分支到当前分支：git merge name
+		删除分支：git branch -d name
+
+	冲突：
+		冲突发生原因：两个分支同时修改一个文件并提交了
+		需要手动解决冲突，再提交
+
+		git log --graph --pretty=oneline
+
+	分支管理策略：
+		合并会出现三种情况：
+		1.能执行快速合并的话，执行快速合并
+		2.合并未产生冲突时，需要上成一个新分支，需要git merge --no-ff(禁用快速合并)，一般是在处理之前的bug，以便留下bug已经修复的记录
+		3.产生冲突时，手动处理冲突，生成一个新节点
+
+		git stash 保存工作区内容（一般是保存完成了一般的工作）
+		git stashlist 查看stash列表
+		git stash pop 恢复工作现场
+				
+	github使用：
+		

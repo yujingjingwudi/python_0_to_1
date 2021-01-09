@@ -1,0 +1,48 @@
+/*用于清除一些标签自带的样式*/
+
+
+h1,h2,h3,h4,h5,h6,ul,body,p{
+    margin:0;
+    padding:0;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+em  {
+    font-style:normal;
+}
+
+img{
+    border:0;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-size:100%;
+}
+
+.clearfix:before,.clearfix:after {
+    content:"";
+    display: table;
+}
+
+.clearfix:after{
+    clear:both;
+}
+
+.clearfix{
+    zoom:1;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}

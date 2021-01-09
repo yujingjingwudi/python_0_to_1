@@ -1,0 +1,18 @@
+长连接：HTTP1.1使用的是长连接   一次链接可以获取多个数据
+短链接：HTTP1.0使用的是短连接    一次链接获取一次数据
+
+
+web静态服务器epoll：用单进程单线程实现高并发
+epoll的两个优势：
+1.linux系统分为内核态和应用态，使用列表存储socket的时候会将该列表复制进系统内存，而epoll将列表存储在公共部分
+2.epoll相较与轮询方式，采用了消息通知的方式
+
+epoll工作原理：使用了内存映射技术，采用了事件的就绪通知方式，epoll序列存放的是文件描述符
+
+import select
+# 创建一个epoll对象
+epl = select.epoll
+# 将监听套接字的文件描述符注册到epoll中
+epl.register(socket.fileno(),select.epollin()
+epl.poll # 默认会堵塞，直到os检测到有信息到来，通过时间通知的方式，此时才会解堵塞，返回值是一个列表，列表内存储的是元组
+(fd,event) 文件描述符和事件类型   

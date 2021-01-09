@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "14113868",
+      "name": "vip",
+      "font_class": "vip",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "14113869",
+      "name": "直播",
+      "font_class": "zhibo",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "14113870",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "14113871",
+      "name": "闹钟",
+      "font_class": "naozhong",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "14113872",
+      "name": "生活缴费",
+      "font_class": "shenghuojiaofei",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var alist = [11,22,33,44,55,66,44,33,22,11,55]
+			var alist2 = [];
+			for (var i=0;i<alist.length;i++){
+				if(i==alist.indexOf(alist[i])){
+					alist2.push(alist[i])
+				}
+			}
+			obj = document.getElementById('box');
+			obj.innerHTML = alist2.join('-');
+			olist.innerHTML=sTr;
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

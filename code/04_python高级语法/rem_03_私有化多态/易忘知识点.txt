@@ -1,0 +1,32 @@
+私有化：
+xx：共有变量
+_x：私有变量，会导致 from xxx import 导入导入导不进来chun'fa
+__：避免与子类中的属性命名冲突，无法在外部直接访问 表示私有
+__xx__：用户名空间的魔法对象或者属性。如__init__，是共有的
+xx_：用于避免
+
+import 方式：
+from xxx import xxx
+import xxx (做两个事情，1.让解释器找xxx模块2.加载到这个python文件中
+from xxx import *
+import xxx,zzz
+from xxx import yyy,mmm
+import xxx as XXX
+
+
+import sys
+# python寻找模块的顺序
+sys.path # 返回的是个列表
+可以通过sys.path.append进行插队
+
+import 同一个文件只会有第一个生效
+
+from imp import reload
+reload(aa)   # 重新导入aa模块，只能重新导入通过import导入的模块，from不行
+
+import xxx 和 from xxx import yyy 不一样，尤其是在修改变量的时候 import 的xxx指向的模块，yyy仅仅指向的是值
+
+封装继承多态
+__class__ python3创建对象里，每个对象都有这个属性
+__dict__  每个对象都有这个属性，存放着变量
+继承是为了功能的扩充，减少冗余

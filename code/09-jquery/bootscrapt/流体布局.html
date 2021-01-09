@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<style type="text/css">
+		div[class=content-fluid]{
+			height: 50px;
+			border: 2px solid #000;
+			background: gold;
+		}
+		div[class*=col-]{
+			height: 50px;
+			border: 2px solid #000;
+			background: gold;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="bootstrap-3.3.7-dist"></script>
+</head>
+<body>
+	<!-- 流体布局 -->
+	<div class="content-fluid">流体容器</div>
+	<!-- 响应式布局 -->
+	<!-- <div class="container">响应式容器</div> -->
+	<!-- 栅格 -->
+	<div class="container">
+		 <div class="col-lg-3 col-md-4 col-sm-6"></div>
+		 <div class="col-lg-3 col-md-4 col-sm-6"></div>
+		 <div class="col-lg-3 col-md-4 col-sm-6"></div>
+		 <div class="col-lg-3 hidden-md col-sm-6"></div>
+	</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+	<div class="container">
+		<div class="row">
+				<!-- 第一个col-lg-5偏移一份 -->
+			<div class="col-lg-5 col-lg-offset-1"></div>
+			<div class="col-lg-5"></div>	
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-1"></div>
+			<div class="col-lg-4 col-lg-offset-2"></div>	
+		</div>
+	</div>
+
+		<div class="container">	
+			<div class="row">
+				<h1>按钮</h1>
+			</div>
+		</div>	
+		
+		<div class="container">
+			<div class="row">	
+				<a href="#" class="btn btn-primary">按钮</a>
+				<a href="#" class="btn btn-success">a标签按钮</a>
+				<a href="#" class="btn btn-info">a标签按钮</a>
+				<a href="#" class="btn btn-warning">a标签按钮</a>
+				<a href="#" class="btn btn-danger">a标签按钮</a>
+				<a href="#" class="btn btn-danger active">a标签按钮</a>
+				<a href="#" class="btn btn-link">a标签按钮</a>
+				<a href="#" class="btn disabled btn-danger">a标签按钮</a>
+			</div>
+			<br>
+			<br>
+			<br>	
+			<div class="row">
+				<div class="btn btn-primary btn-block">100%按钮</div>
+			</div>
+			<br>
+			<br>
+			<br>	
+			<div class="row">
+				<div class="btn-group">
+					<div class="btn btn-primary">步骤1</div>
+					<div class="btn">步骤2</div>
+					<div class="btn">步骤3</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>	
+			<div class="row">
+				<div class="btn-group btn-group-justified">
+					<div class="btn btn-primary">步骤1</div>
+					<div class="btn">步骤2</div>
+					<div class="btn">步骤3</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>	
+			<div class="row">
+				<div class="btn-group btn-group-justified">
+					<div class="btn-group">
+						<input type="button" class="btn btn-primary" value="input按钮">
+					</div>
+					<div class="btn-group">
+						<input type="button" class="btn btn-primary" value="input按钮">
+					</div>
+					<div class="btn-group">
+						<input type="button" class="btn" value="input按钮">
+					</div>		
+				</div>
+			</div>
+		</div>
+			
+	
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>             --申明文档
+<html lang="en">            --定义这个网页的语言，作用不大，一般做统计用
+    <head>
+        <meta charset="UTF-8">
+        <title>个人主页</title>
+    </head>
+
+    <body>网页显示的内容</body>
+
+</html>
+
+目前html5有两种文档类型，xhtml 1.0和html5
+区别：1.文档申明和编码申明2.html5新增了标签元素以及元素属性
+<!--             -->  注释
+
+
+<h1><h2><h3><h4><h5><h6>标题标签
+
+段落标签：
+<p>段落文字</p>                   <!-- 首行空格无效,如果需要换行，需要采用字符实体的方法，&nbsp;，'<'的字符实体是&lt，‘>'的是gt'-->
+<br /> 换行
+块标签：
+<div>                           p标签和p标签之间有空行，div不带有任何样式
+<span>                          span可以单独标记
+
+含样式和语义的标签
+<em>          行内元素，表示语气的强调词   倾斜的样式
+<i>           行内元素，表示专业词汇   倾斜的样式
+<b>           行内元素，文档中的关键字，产品名 粗体
+<strong>      行内元素，fe非常重要的内容   粗体
+
+语义化的标签
+ul，li表示列表，a表示链接，dl，dt，dd定义列表
+
+图像标签
+<img src="xxx“，alt=”图片加载失败时，会显示这个">
+
+链接标签
+<a>     href属性：定义跳转的地址
+        title属性：定义鼠标悬停时弹出的提示文字框
+        target：定义链接窗口打开的位置
+            target="_self"缺省值，新页面替换原来的页面，在原来位置打开
+            target="blank"会在一个新开的浏览器窗口打开
+        <a href = "xxxx.html">这是一个超链接</a>
+        a标签嵌套img，就是让图片来链接
+        <a href = "#"></a>  <!-- 链接到页面的顶部-->
+        <a href = javascript:;>什么都不做的意思,a标签如果没有href属性的化，会失去功能样式
+
+列表
+        有序列表
+        快捷键 ol>li*3
+        <ol>
+            <li>列表文字1</li>
+            <li>列表文字2</li>
+            <li>列表文字3</li>
+        <ol>
+        无序列表
+        <ul>
+            <li>列表文字1</li>
+            <li>列表文字2</li>
+            <li>列表文字3</li>
+        <ul>
+        定义列表
+        通常用于术语的定义，<dl>表示列表的整体 <dt>表示题目 <dd>表示解释
+
+表格
+        <table> 属性：border，定义边框 cellpadding 定义单元格内容和边框的距离 cellspacing 单元格之间的距离 align属性相对于浏览器窗口水平对齐方式：left，center，right
+        <tr>:定义表格中的一行
+        <td>和<th>:一行中的单元格，<td>代表一行中的一个单元格，<th>代表表头单元格： <th>了；里的文字默认加粗，居中
+            常用属性：align，单元格内容的水平对齐方式：left，denter，right
+                     valign，单元格内容的垂直对齐方案：top，middle，bottom，
+                     colsspan，                  单元格水平合并，
+                     rowspan，单元格垂直合并
+
+
+布局：布局也可以叫做排版，有两种
+        1. table布局,也叫做传统布局
+            table布局技巧：
+            1.按照设计图的尺寸设计表格的宽高以及单元格的宽高
+            2.将表格的border、cellpadding、cellspacing全部设置为0，表格的边框和间距不占页面空间，只起划分的作用
+            3.针对复杂的布局，可以单元格里面再嵌套表格
+            4.单元格中的元素或者嵌套的表格用align和valign设置对齐方式
+            5.通过属性或者css样式设置单元格中元素的样式
+        2. html+css(div+css)
+
+表单：表单用于不同类型的用户输入
+    <form>                                           <!--action属性 定义表单提交地址,action空出来，提交给当前的页面 method定义表单提价方式 get or post-->
+        <label>用户名</label>                         <!--字段写了数据才会提交，通过get提交方式，参数会反映在地址栏，还有通过post提交或ajx提交
+        <input>                                      <可以用image提交，但是一般会提交两次，不建议使用
+            input属性：
+                text：定义单行文本输入框
+                password：定义密码输入框
+                radio：单选框
+                checkbox：复选框
+                file：定义上传文件
+                submit：提交按钮
+                reset：重置按钮
+                imge：定义图片作为提交按钮
+                hidden：定义一个隐藏的表单域，用来存储值，可以存储一个变量
+        <select><option></option></select>
+    </form>

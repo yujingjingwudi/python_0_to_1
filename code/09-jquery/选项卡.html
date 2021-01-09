@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.btns input').click(function(event) {
+				/* Act on the event */
+				$(this).addClass('bingo').siblings().removeClass('bingo');
+				$('.page_con div').eq($(this).index()).addClass('active').siblings().removeClass('active');
+			});
+
+		})
+	</script>
+	<title>Document</title>
+	<style type="text/css">
+			.btns input{
+				height: 30px;
+				width: 100px;
+				/*background-color:gold;*/
+				border: 0;
+			}
+
+			.btns .bingo{
+				background-color:gold;
+			}
+
+			.page_con div{
+				height: 300px;
+				width: 400px;
+				display: none;
+				text-align: center;
+				line-height: 300px;
+				color: #fff;
+			}
+
+			.page_con .active{
+				display: block;
+				background: cyan;
+			}
+	</style>
+</head>
+<body>
+	<div class="btns">
+		<input type="button" class = "bingo" value="第一个选项卡">
+		<input type="button" value="第二个选项卡">
+		<input type="button" value="第三个选项卡">
+	</div>
+	<div class="page_con">
+		<div class="active">第一个页面</div>
+		<div>第二个页面</div>
+		<div>第三个页面</div>
+	</div>
+</body>
+</html>

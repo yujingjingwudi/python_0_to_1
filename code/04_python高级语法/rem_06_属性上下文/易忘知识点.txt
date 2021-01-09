@@ -1,0 +1,46 @@
+修改查看私有属性：
+
+__xxx:为私有属性，python中实例私有属性无法被访问到因因为，python偷偷地将变量名给更改了
+__dict__:可以查看类或者对象里的的变量
+
+魔法属性，方法：
+__doc__: 返回的是类里的描述，即"""xxxxx"""
+__class__: 能够显示当前的实例对象是谁创建的，输出类
+__module__: 能够显示当前的对象在哪一个模块里面，输出模块
+__init__: 初始化方法，不能
+__del__: 对象在内存中删除时调用
+__call__: 对面后面加括号触发执行，即对象(),类()()
+__dict__: 检查类或者实例对象里的属性
+__str__: 在打印对象的时候调用
+__getitem__,__setitem__,__delitem__: 用于索引操作
+    result = obj['ki']
+    obj['k2'] = 'laowang'
+    def obj['k1']
+    当字典用
+__getslice__,__setslice__,__delslice__: 用于分片操作
+    obj[-1,1]
+    obj[0:1] = [11,22,33,44]
+    del obj[0:2]
+
+with 和上下文管理器
+f = open("output.txt","w")  # 这样打开文件会存在一个问题，在调用write的时候，出现了异常会导致后续代码无法执行，close无法正常调用，因此就会一直被该程序占用
+进阶版本是 用try进行不过异常
+高级版本是 用with 无论是否发生异常都会把文件给关掉
+
+
+
+上下文：context 当前页面的相关信息
+上下文管理器：实现了__enter__,和__exit__方法，with就用了上下文管理器
+with File（‘outtext’，‘wb’） as f：
+# 第一件事是创建file对象，然后检索File中是否有__enter__和__exit__方法
+# f是__enter__方法的返回值，__exit__方法是一定会调用的
+# 能够保证数据在用完或者产生异常的时候一定能关闭（文件，数据库链接，socket）
+
+
+实现上下文管理器的另一种方法
+from contextlib import contextmanager
+@contextmanager
+def my_open(path,mode)
+    f= open(path,mode)
+    yield f
+    f.close                  # yield之前的实在__enter__中执行, yield之后的是在__exit__中执行

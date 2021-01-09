@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+	<style type="text/css">
+		.btn{
+			outline: none;
+			border: none;
+			/*background-color: gold;*/
+			height: 30px;
+			width:100px;
+		}
+		.box{
+			overflow: hidden;
+			height: 300px;
+			width: 400px;
+			position: relative;
+		}
+		.items{
+			height: 300px;
+			width: 1200px;
+			background-color: cyan;
+			position: absolute;
+			left: 0;
+		}
+		.item{
+			height: 300px; 
+			width: 400px;
+			float:left;
+			text-align: center;
+			line-height: 300px;
+			font-size: 20px;
+			color:white;
+		}
+		.active{
+			background-color: gold;
+		}
+
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.btn').click(function(event) {
+				/* Act on the event */
+				$(this).addClass('active').siblings().removeClass('active');
+				$('.items').animate({'left':-400*$(this).index()});
+				
+				// $('.items').animate({
+				// 	left: -400*$(this).index();
+			});
+		})
+	</script>
+<body>
+	<div class="btns_con">
+		<input type="button" value="选项卡1" class="btn active">
+		<input type="button" value="选项卡2" class="btn">
+		<input type="button" value="选项卡3" class="btn">
+	</div>
+	<div class="box">
+		<div class="items">
+			<div class="item">选项卡一的内容</div>
+			<div class="item">选项卡二的内容</div>
+			<div class="item">选项卡三的内容</div>
+		</div>
+	</div>
+</body>
+</html>

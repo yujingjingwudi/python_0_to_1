@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>图片：</h1><br/>
+    {% for content in page %}
+        <img src="/static/media/{{content.picture}}" alt=""/>
+    {% endfor %}
+    {% if page.has_previous %}
+        <a href="/showpic/{{page.previous_page_number}}">&lt;上一页</a>
+    {% endif %}
+    {% for num in page.paginator.page_range %}
+        {% if page.number == num %}
+            {{num}}
+        {% else %}
+            <a href="/showpic/{{num}}">{{num}}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page.has_next %}
+        <a href="/showpic/{{page.next_page_number}}">&gt;上一页</a>
+    {% endif %}
+</body>
+</html>

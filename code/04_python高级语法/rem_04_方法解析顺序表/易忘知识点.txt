@@ -1,0 +1,39 @@
+# 多继承以及MRO顺序
+
+1.python里面只有重写，没有重载
+  python里面后面的定义会覆盖前面的定义
+2.多继承孙子类的实例化会导致爷爷类的构造方法被多次调用
+
+调用父类构造方法的方法：
+1.调用parent.__init__
+2.super().__init__ # 调用super的时候，他自己会判断调用哪个父类
+  __mro__方法里面保存了父类构造方法的先后顺序（采用的C3算法），super方法是参照着mar元组的顺序来的
+3.super(grandson,self)，拿着grandson到__mro__里面找 顶向调用构造方法
+
+×args，××wkarg：
+*args,和××wkargs不能连续传递，在函数体中×和××代表拆包
+
+def aaa(a,b,*args,**kwargs):
+    print(a)
+    print(b)
+    # print(*args)
+    print(args)
+    print(kwargs)
+    # print(**kwargs)
+
+def bbb(a,b,*args,**kwargs):
+    print(a)
+    print(b)
+    print(args)
+    print(kwargs)
+    # aaa(a,b,args,kwargs)              # 11 22 ((33,44),{'age':18,'name':'yangcheng'}
+    # aaa(a,b,*args,kwargs)             # 11 22 (33, 44, {'age': 18, 'name': 'yangcheng'}) {}
+    # aaa(a,b,args,**kwargs)              # 11 22 ((33, 44),){'age': 18, 'name': 'yangcheng'}
+    aaa(a,b,*args,**kwargs)
+bbb(11,22,33,44,name="yangcheng",age=18 )
+
+单继承中的super
+super保证每个构造方法只调用一次
+1.super().__init__相比于类名.init
+
+继承中子类寻找资源也是按照mro的顺序（即先找自己，再找父类）

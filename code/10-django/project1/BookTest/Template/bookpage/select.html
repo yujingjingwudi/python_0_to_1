@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $.get('/getpro',function(data){
+                var pro = $('#pro');
+                res = data.data;
+                // alert(res.length);
+                // alert(res);
+                for(i=0;i<res.length;i++){
+                    id = res[i][0];
+                    btitle = res[i][1];
+                    // alert(btitle);
+                    option_str = '<option value="'+id+'">'+btitle +'</option>';
+                    pro.append(option_str);
+                }
+            })
+            $('#pro').change(function(event) {
+                /* Act on the event */
+                var book_id = $(this).val();
+                var roles = $('#role');
+                $.get('/getrole/'+book_id,function(data){
+                    res = data.data
+                    roles.empty().append('<option>---请选择人物---</option>')
+                    $.each(res,function(index, el) {
+                         //index 是下标，el是遍历出来的每一个元素
+                         id = el[0];
+                         role = el[1];
+                         // alert(role);
+                         option_str = '<option value="'+id+'">'+role +'</option>';
+                         roles.append(option_str);        
+                    });
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+    <select id="pro">
+        <option>---请选择作品---</option>
+    </select>
+    <select id="role">
+        <option>---请选择人物---</option>
+    </select>
+</body>
+</html>

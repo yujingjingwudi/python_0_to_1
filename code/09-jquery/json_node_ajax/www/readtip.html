@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	.tanchaung{
+		margin: 50px auto;
+		height: 200px;
+		width: 300px;
+		background-color: cyan;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -150px;
+		margin-top: -100px;
+		z-index: 999;
+		border: 3px solid black;
+		display: none;
+	}
+	.box_con{
+		/*display: none;*/
+	}
+	.mask{
+		z-index: 99;
+		height: 100%;
+		width: 100%;
+		/*background-color: grey;*/
+		opacity: 0.3
+		position: fixed;
+		left: 0;
+		top: 0;
+	}
+	.close{
+		/*float:left;*/
+		color: blue;
+		font-size: 16px;
+		text-decoration: none;
+	}
+	.close:hover{
+		color:yellow;
+	}
+</style>
+<script  src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="jquery.cookie.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// alert("1");
+		var status = $.cookie('hasread');
+		// $('.tanchaung').show();
+		alert(status);
+		if(status==undefined){
+			// alert("nihao");
+			$('.tanchaung').show();
+		}
+		$('.close').click(function(event) {
+			/* Act on the event */
+			$.cookie('hasread','read',{expire:3,path:'/'});
+			$('.tanchaung').hide();
+		});
+	})
+	
+</script>
+<body>
+	<input type="button" id="btn" name="" value="弹窗">
+	<div class="box_con">
+		<div class="tanchaung">只要998，只要998
+			<a href="#" class="close">不再提醒</a>
+		</div>
+		<div class="mask">网站内容</div>
+	</div>
+</body>
+</html>

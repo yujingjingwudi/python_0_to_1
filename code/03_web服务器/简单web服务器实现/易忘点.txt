@@ -1,0 +1,1 @@
+tcp.setblocking(False) 将套接字设置成非堵塞状态

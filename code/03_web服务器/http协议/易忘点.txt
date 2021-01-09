@@ -1,0 +1,40 @@
+客户端发送的请求如下：
+GET / HTTP/1.1                            请求类型，请求文件地址，http版本，请求至少有这个
+Host: 192.168.1.10:8080                   访问地址端口
+Connection: keep-alive                    连接方式
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+
+服务端回送的请求如下：
+HTTP/1.1 200 OK                           应答至少有body和这个
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Origin: *
+Cache-Control: no-cache
+Connection: keep-alive
+Content-Length: 0
+Content-Type: image/gif
+Date: Sun, 11 Oct 2020 14:14:18 GMT
+Pragma: no-cache
+Server: nginx/1.8.0
+Tracecode: 08581657592499142666101122
+
+服务器回送的数据分为两个部分，第一个部分是头，第二个部分是body，浏览器通常认为头之后第一个换行之后的内容是bo
+
+tcp协议：
+server_socket.setsockopt(socket.SQL_SOCKET,socket.SO_REUSEADDR,1) 服务端4次挥手之后资源立即释放
+三次挥手：1.客服端向服务端发送请求
+         2.服务端收到请求，准备好，询问客户端是否准备好
+         3.客户端回应
+四次挥手：1.客户端告诉服务端，不再发送信息，关闭发送端
+         2.服务端发送确认信息，关闭接收端，因为要确保应答包送达，所以这个时候不能调用close
+         3.服务端发送不在发送信息的通知
+         4.客户端收到信息，给出应答，之后客服端会挂着一段时间，避免服务端未收到信息超时重传
+
+状态码：200成功
+       300重定向
+       400notfound
+       500服务器挂了

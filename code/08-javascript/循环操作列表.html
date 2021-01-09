@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<script type="text/javascript">
+		window.onload=function(){
+			aList = ['五等分的花嫁','从零开始的异世界生活','可塑性记忆','寒蝉鸣泣之时','在地下城寻找邂逅是否搞错了什么']
+			olist = document.getElementById('item');
+			sTr = ''
+			for (var i=0;i<aList.length;i++){
+				sTr += '<aList i=""></aList>+'</li>'
+			}
+			alert(sTr);
+
+			olist.innerHTML=sTr;
+		}
+	</script>
+
+	<style type="text/css">
+		.list{
+			margin:0;
+			padding: 0;
+			list-style: none;
+			height: 606px;
+			width: 300px;
+		}
+		.list li{
+			height: 100px;
+			width: 300px;
+			line-height: 100px;
+			font-size: 14px;
+			border-bottom: 1px dotted #666;
+		}
+	</style>
+
+</head>
+<body>
+	<ul class="list" id="item">
+		
+	</ul>
+</body>
+</html>

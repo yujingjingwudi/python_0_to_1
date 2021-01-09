@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{
+		margin:0;
+		padding: 0;
+
+	}
+	/*body{
+		height: 762px;
+		overflow: hidden;
+	}*/
+	.page_con{
+		position: fixed;	
+		width: 100%;
+		top:0;
+		overflow: hidden;
+	}
+	.page{
+		width:100%;
+		height: 762px;
+	}
+	.main_content{
+		margin:150px auto;
+		height:400px;
+		width: 1030px;
+		position: relative;
+	}
+	.left_image{
+		position: relative;
+		opacity: 0;
+		top: 50px;
+		transition: all 3000ms ease 600ms;
+		overflow: hidden;
+		float: left;
+		height: 400px;
+		width: 400px;
+		margin-right: 30px;
+	}
+
+
+	.right_info{
+		position: relative;
+		opacity: 0;
+		top: -50px;
+		transition: all 3000ms ease 600ms;
+		text-indent: 60px;
+		font-size: 30px;
+		text-align: justify;
+		float: right;
+		padding-top: 30px;
+		line-height: 75px;
+		height: 400px;
+		width: 600px;
+	}
+	.moving .main_content .left_image, .moving .main_content .right_info{
+		top: 0;
+		left: 0;
+		opacity: 1;
+	}
+	.page1{
+		background-color: cyan;
+	}
+	.page2{
+		background-color: red;
+	}
+	.page3{
+		background-color: green;
+	}
+	.page4{
+		background-color: blue;
+	}
+	.page5{
+		background-color: orange;
+	}
+	.page6{
+		background-color: grey;
+	}
+	.clearfix:before,.clearfix:after{
+		content: "";
+		display: table;
+	}
+	.clearfix:after:{
+		clear:both;
+	}
+	ul{
+		position: fixed;
+		height: 180px;
+		width: 30px;
+		left: 1450px;
+		top:230px;
+		list-style: none;
+	}
+	ul li{
+		height: 12px;
+		width: 12px;
+		border-radius: 50%;
+		margin:20px 0;
+		border: 1px solid #666;
+		cursor: pointer;
+		/*background-color:rgba(255,255,255,0);*/
+	}
+	.active{
+		background-color: #666;
+	}
+
+</style>
+<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.mousewheel.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// alert($(window).height());
+		var $page_height = $(window).height()
+		var $now_positon = 0;
+		var $list_len = $('li').length;
+		var $timer = null;
+		$('page').css('height', $page_height);
+		$('.page1').addClass('moving');
+		$(window).mousewheel(function(event,dat){
+			// alert(dat);
+			//清除之前没执行完的定时器
+			clearTimeout($timer);
+			$timer = setTimeout(function(){
+				if(dat==-1){
+				$now_positon++;
+			}
+			else{
+				$now_positon--;
+			}
+			if($now_positon>=0&&$now_positon<=$list_len-1){
+				$('.page_con').animate({
+				'top':-$page_height*$now_positon},
+				800, function() {
+				/* stuff to do after animation is complete */
+					// alert($('.page_con .clearfix').length);
+					$('.page_con .clearfix').eq($now_positon).addClass('moving').siblings().removeClass('moving');
+					$('ul li').eq($now_positon).addClass('active').siblings().removeClass('active');
+				});
+			}
+			else if($now_positon<0){
+				$now_positon=0;
+			}
+			else{
+				$now_positon=$list_len-1;
+			}
+			// alert($now_positon);
+			},200)
+			
+			
+		})
+		$('ul li').click(function(event) {
+
+			/* Act on the event */
+			if($(this).index()!=$now_positon){
+				$now_positon = $(this).index();
+				$(this).addClass('active').siblings().removeClass('active');
+				$('.page_con').animate({
+				'top':-$page_height*$now_positon},
+				800, function() {
+				/* stuff to do after animation is complete */
+					// alert($('.page_con .clearfix').length);
+					
+					$('.page_con .clearfix').eq($now_positon).addClass('moving').siblings().removeClass('moving');
+					// $('ul li').eq($now_positon).addClass('active').siblings().removeClass('active');
+
+				});
+			}
+		});
+	})
+</script>
+<body>
+	<div class="page_con">
+		<div class="page page1 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+
+		<div class="page page2 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+
+		<div class="page page3 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+
+		<div class="page page4 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+
+		<div class="page page5 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+
+		<div class="page page6 clearfix">
+			<div class="main_content">
+				<div class="left_image"><img src="img/img01.jpeg"></div>
+				<div class="right_info">OVA第1部《Re:从零开始的异世界生活雪之回忆》于2018年10月6日在日本上映，BD/DVD于2019年6月7日发售。OVA第2部《Re:从零开始的异世界生活冰结之绊》</div>
+			</div>
+		</div>
+	</div>
+	<ul class="list_con">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

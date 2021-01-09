@@ -1,0 +1,98 @@
+
+
+
+.navbar-inverse {
+  background-color: green;
+  border-color: green;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+/*.navbar-inverse .navbar-nav > li > a {
+  color: white;
+}*/
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  /*color: yellow;*/
+  background-color: lightgreen;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #355626;
+}
+.navbar-inverse .navbar-nav > .disabled > a,。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: lightgreen;
+  background-color: lightgreen;
+}
+
+.navbar-brand{
+	padding: 0;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
+.navbar-inverse .navbar-header .navbar-brand img{
+	height: 40px;
+}
+
+.jumbotron{
+	background: url('../img/backgroud.jpg') no-repeat;
+	padding: 20px;
+	margin: 0;
+}
+
+.jumbotron .container .row h2{
+	font-size: 22px;
+}
+
+.jumbotron .container .row p{
+	font-size: 16px;
+	line-height: 32px;
+}
+
+.jumbotron .container .row .icons{
+	height: 220px;
+}
+
+@media (max-width: 1200px){
+	.jumbotron{
+		padding: 15px;
+	}
+	.jumbotron .container .row p{
+	font-size: 16px;
+	line-height: 28px;
+}
+}
+
+@media (max-width: 992px){
+	.jumbotron{
+		padding: 12px;
+	}
+	.jumbotron .container .row p{
+	font-size: 16px;
+	line-height: 24px;
+}
+}
+
+.active-pic-list .thumbnail{
+	max-width: 262px;
+	margin: 0 auto 20px;
+}
+
+.active-info{
+	margin: 0;
+}
+
+.items .col-lg-2{
+	width: 20%;
+}
+
+.items .col-xs-3{
+	width: 33.33%;
+}

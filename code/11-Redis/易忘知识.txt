@@ -1,0 +1,169 @@
+概念：高效key-value数据库
+
+nosql:not only sql
+	1.不支持sql语法
+	2.没有通用语言
+	3.
+
+nosql与sql：
+	1.应用场景不同：sql：关系比较复杂的查询场景
+	2.nosql不支持事务
+	3.两者不断取长补短，呈现融合趋势
+
+Redis：
+	使用ANSI C语言编写，支持网络，内容亦可持久化存储，key-value，提供多种语言api
+	开发公司之前是VMware，之后是Pivotal
+
+特性：
+	1.支持数据持久化
+	2.在支持key-value的同时，还支持list，set,zset,hash
+	3.支持主从模式的数据备份
+
+优势：
+	1.性能高
+	2.支持丰富的数据类型
+	3.原子性
+	4.特性丰富
+
+应用场景：
+	1.做缓存
+	2.特定场景代替传统数据库
+
+配置：
+	1.绑定ip，端口port（默认6379）
+	2.是否以守护进程启动 daemonize yes（以服务的形式，在后台）
+	3.数据文件，dbfileame dump.rdb
+	4.数据文件存储路径：	dir /var/lib/redis
+	5.日志文件 logfile /var/log/redis/redis-server.log
+	6.数据库 默认16个
+	7.主从复制 slaveof
+
+服务端，客服端：
+	服务端：
+		redis-server --help
+		sudo service redis start
+		sudo service redis stop
+		sudo service redis restart
+		ps -ef|grep redis 查看redis进程
+		sudo kill -9 pid 杀死redis服务器
+		sudo redis-server /etc/redis/redis.conf 制定加载的配置文件，启动服务
+
+	客户端：
+		redis-cli
+		redis --help
+		ping
+		默认连接的是第一个数据库
+		select +num  切换数据库
+
+	数据结构
+		1.数据类型：
+			string:基于二进制安全，可以接受任何格式数据，最大长度512m
+				设置：
+					set key value
+				查询
+					get key
+				设置过期时间
+					setex key seconds value
+				设置多个键值
+					mset key1 value1 key2 value2
+				追加内容
+					append key value
+				查找键（支持正则）
+					keys pattern
+					keys *所有键
+					keys a*包含a
+
+					exists key 键key是否存在
+					type key 查看key的类型
+					del key 
+					expire key seconds 设置键过期时间
+					ttl key 查看键的有效时间
+			hash
+				hset key field value 
+				hmset key field1 value1 field2 value2
+				获取：
+					hkeys key
+				获取一个属性的值
+					hget key field
+					hmget key field1 field2
+					hvals key 获取所有属性的值 
+				删除
+					del user 删除所有
+					hdel key field1 field2 删除所有的属性
+			list(有序)
+				在左侧插入数据：
+					ipush key value1 value2 ...
+				在右侧插入数据：
+					rpush key value1 value2 ...
+				在指定元素的前和后插入新元素
+					linsert key before 或 after
+				获取：
+					lrange key start stop
+				设置：
+					lset key index value
+				删除：
+					将列表前count次出现的值为value的元素移除
+					0时移除所有
+					lrem key count value
+			set
+				添加元素：
+					sadd key member1 member2
+				获取
+					smembers key 获取所有元素
+				删除
+					srem key value 删除value
+			zset(每一个元素都有一个double类型的score，代表权重，通过权重从小到大排序)
+				添加：
+					zadd key score1 member1 score2 member2
+				查询：
+					zrange 0 -1
+					zrangebyscore min max 权重在min和max之间的
+					zscore key member 返回权重	
+				删除
+					zrem member1 member2
+					zremrangebyscore key min max
+
+
+			主从：
+				1)查看ip
+				2)打开配置文件
+				3)启动服务
+				配置从：
+				1)复制一份配置文件
+				2)编辑内容：
+					1.bind 192.168.1.10
+					2.slaveof 192.168.1.10:6379
+					3.port 6378
+				3)启动服务
+				redis-cli -h 192.168.1.10 info Replication #查看主从关系
+
+		使用redis，存储session
+			1)pip install django-redis-session
+			2)修改setting.py
+				SESSION_ENGINE = 'redis_session.session'
+				SESSION_REDIS_HOST = 'localhost'
+				SESSION_REDIS_PORT = 6379
+				SESSION_REDIS_DB = 2
+				SESSION_REDIS_PASSWORD = ''
+				SESSION_REDIS_PREFIX = 'session' # 唯一的标识码
+			
+	redis集群：
+		集群配置方法：
+			1.在电脑1中创建conf目录，创建多个xxx.conf文件，启动服务
+			2.在电脑2中创建conf目录，创建多个xxx.conf文件，启动服务
+			3.sudo apt-get ruby安装ruby
+				redis-trib.rb create --replicas 1 ip:port ip:port ......
+
+				主节点必须三个以上
+				主节点挂掉以后，会由从节点顶上
+				16383个槽平分到主机的节点上
+				根据crc16算法(根据name计算)来决定存放在那个槽中
+
+
+				redis-cli -h 192.168.1.10 -c -p 5315
+
+			python与redis集群的交互
+			from rediscluster import StrictRedisCluster
+			1.构建所有的节点
+				startup_nodes=[{host,port},{host,port},{host,port}..]
+				src=StrictRedisCluster(startup_nodes=startup_nodes,decode_responses=True)

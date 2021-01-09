@@ -1,0 +1,36 @@
+元类：
+
+默认被加载的模块内建模块
+
+globals()可以查看左右直接用的数据方法，包含着所有的全局变量，以字典形式存储，包括输入和输出
+        globals()中有一个元素叫__bulitin__,<module 'bulitin'>
+
+元类：是一种特殊的类，用来创建类
+
+使用type创建类：
+    class A:
+        num = 100
+        num2 = 200
+
+    type("B","","num":100,"num2":200
+
+    两种创建类的方式，结果是一样的
+    type实际上是个类，是个元类
+
+    def test_2(self):
+        print("实例方法")
+
+     type("B"," ",""test_2:test_2")
+
+    @static
+    def print_static():
+        print("haha")
+    type("B"," " ,"print_static":print_static")
+
+
+元类的用法：
+    class Foo(object,metaclass=xxxxx)           # 创建类不适用type，使用xxxxx方法来创建
+        bar = 'bip'                             # 把bar换成大写
+
+函数通过装饰器进行添加功能
+类通过元类进行添加功能想

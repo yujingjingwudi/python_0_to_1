@@ -1,0 +1,40 @@
+路由：来什么请求，选择什么为你服务，映射
+
+
+SEO：搜索引擎优化
+静态URL： 类似域名/news/2012-5-09/12.html是真的url，每个网页有真实的路径，只是存在在服务器中   优点：打开速度快，网站结构便于记忆，对SEO友好 缺点：页面的多，不利于管理
+动态：域名/NewsMore.asp?id=5或者、DaiKuan.php?id=17,带有?的URL，每个URL只是一个逻辑地址，并不是真实存在在服务器中   优点：修改页面方便，占用空间小 缺点：打开速度稍慢，且URL结构复杂
+伪静态URL：/域名/course/36.html course 和36都是变量
+
+使用数据库：
+1.从html文件中找到模板
+2.获取数据库中的数据
+3.用数据库中的数据替代模板
+
+在python中面向切面变成就是用装饰器扩展功能
+
+URL参数转换：
+    提交数据的时候，为防止解析出错，会把中文，或者符号转换编码
+    浏览器编码传给服务器，服务器传给框架，框架需要编码在写进数据库
+
+编码方式：
+    import urllib.parse
+
+    urllib.parse.quoto("中国")   # 编码
+    urllib.parse.unque("xxxxx") # 解码
+    浏览器里面遇到多个空格按照一个空格解析
+
+日志：
+    日志分为五个等级：
+    1.debug         详情信息，通常只出现在诊断问题上
+    2.info          按预期运行
+    3.warning       迹象表名，可能有问题出现在将来
+    4.error         严重错误
+    5.critical      严重错误，程序可能无法运行
+    日志输出方式，1.控制台 2.文件
+    默认级别是warning，即warning以下级别的不显示
+    import logging
+    logging.basicConfig(level=logging.INFO,
+    filename='./log.txt',
+    filemode='w',
+    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levellname)s':

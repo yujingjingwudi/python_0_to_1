@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        @keyframes fengche{
+            from{
+                transform:rotate(0);
+            }
+            to{
+                transform:rotate(360deg);
+            }
+
+        }
+
+        .box1{
+            display: block;
+            margin:50px auto 0;
+            animation:fengche 500ms linear infinite;
+            animation-play-state: paused;
+        }
+        .box1:hover{
+            animation-play-state: running;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="windmills.jpg" alt="风车图片" class="box1">
+</body>
+</html>

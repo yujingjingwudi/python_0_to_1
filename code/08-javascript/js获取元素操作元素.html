@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var odiv1 = document.getElementById('box1');
+			var odiv2 = document.getElementById('box2');
+			var oA = document.getElementById('aa');
+			var sclass = 'color';
+			var scolor = 'gold';
+			odiv1.style.fontSize='30px';
+			odiv2.style[sclass] = scolor;
+			odiv2.innerHTML = "我很强";
+			oA.href = "https://www.baidu.com"
+			odiv2.innerHTML = "<a href='https://www.bilibili.com'>这也是一个链接</a>";
+		}
+	</script>
+</head>
+<body>
+	<div id = "box1">这是一个div1</div>
+	<div id = "box2">这是一个div2</div>
+	<a href="#" id="aa">这是一个链接</a>
+</body>
+</html>

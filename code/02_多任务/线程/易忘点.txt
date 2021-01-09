@@ -1,0 +1,8 @@
+threading.enumerate()  查看当前所有线程，返回值是列表
+当使用实例化thread方法实现多线程时，条用thread的时候不会创建线程，当调用start方法的时候才会创建线程以及让这个线程开始运行
+同步：协同一起做，合作
+互斥锁：创建锁：metux = threading.Lock()
+        锁定：metux = metux.acquire()
+        解锁：metux = metux.release()
+死锁解决方法：1.添加超时时间
+            2.银行家算法

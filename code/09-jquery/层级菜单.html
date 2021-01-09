@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul{
+			list-style: none;
+		}
+
+		.list_con{
+			margin: 20px auto 0;
+			width:200px;
+			border:0;
+		
+		}
+
+		.floor1{
+			height: 30px;
+			line-height: 30px;
+			display: block;
+			background-color:blue;
+			color: white;
+			text-decoration: none;
+			border-top: 1px solid white;
+			font-size: 16px;
+		}
+		.list_con li ul li{
+			
+			height: 30px;
+			line-height: 30px;
+			background-color:lightblue;
+			color: white;
+			border-top: 1px solid white;
+			border-bottom: : 1px solid white;
+			font-size: 13px;
+		}
+		ul li ul{
+			display: none;
+		}
+
+		.active{
+
+			display: block;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"> 
+		$(function(){
+
+			// alert($('a').length);
+			// $('.text').css("background-color","red");
+			$('.floor1').click(function(event) {
+				/* Act on the event */
+				
+				$(this).next().stop().slideToggle().parent().siblings().children('ul').slideUp();
+				// stop修正反复点击导致的持续动画问题
+			});
+		})
+	</script>
+</head>
+<body>
+	<ul class="list_con">
+		<li>
+			<a href="#" class="floor1">&nbsp;水果</a>
+			<ul class="active">
+				<li>&nbsp;&nbsp;&nbsp;苹果</li>
+				<li>&nbsp;&nbsp;&nbsp;梨子</li>
+				<li>&nbsp;&nbsp;&nbsp;葡萄</li>
+				<li>&nbsp;&nbsp;&nbsp;火龙果</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#" class="floor1">&nbsp;海鲜</a>
+			<ul>
+				<li>&nbsp;&nbsp;&nbsp;蛏子</li>	
+				<li>&nbsp;&nbsp;&nbsp;扇贝</li>
+				<li>&nbsp;&nbsp;&nbsp;龙虾</li>
+				<li>&nbsp;&nbsp;&nbsp;象牙蚌</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#" class="floor1">&nbsp;肉类</a>
+			<ul>
+				<li>&nbsp;&nbsp;&nbsp;内蒙古羊肉</li>
+				<li>&nbsp;&nbsp;&nbsp;进口牛肉</li>
+				<li>&nbsp;&nbsp;&nbsp;野猪肉</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#" class="floor1">&nbsp;蔬菜</a>
+			<ul>
+				<li>&nbsp;&nbsp;&nbsp;娃娃菜</li>
+				<li>&nbsp;&nbsp;&nbsp;胡萝卜</li>
+				<li>&nbsp;&nbsp;&nbsp;西红柿</li>
+				<li>&nbsp;&nbsp;&nbsp;西芹</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#" class="floor1">&nbsp;速冻</a>
+			<ul>
+				<li>&nbsp;&nbsp;&nbsp;冰淇淋</li>
+				<li>&nbsp;&nbsp;&nbsp;湾仔码头</li>
+				<li>&nbsp;&nbsp;&nbsp;海参</li>
+				<li>&nbsp;&nbsp;&nbsp;牛肉丸</li>
+			</ul>
+		</li>
+	</ul>
+	
+</body>
+</html>

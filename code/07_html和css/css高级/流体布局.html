@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="流式布局/css/reset.css">
+    <style type="text/css">
+         body{
+             margin:0;
+         }
+        .box1{
+            width:100%;
+            height:50px;
+        }
+        .box1 a{
+            display: inline-block;
+            float:left;
+            /*使用calc方法*/
+            /*width:calc(25% - 2px);*/
+            width:25%;
+            box-sizing: border-box;
+            height:48px;
+            border:1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+    </div>
+</body>
+</html>

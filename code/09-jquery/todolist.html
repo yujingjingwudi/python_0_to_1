@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0px;
+			margin:0px;
+		}
+		.box_con{
+			width: 800px;
+			margin:50px auto 0;
+		}
+		h2{
+			margin-bottom: 20px;
+		}
+		#text{
+			width:600px;
+			border: 1px solid #333;
+			height: 30px;
+		}
+		#add{
+			outline: none;
+			display: inline-block;
+			border: 0;
+			width: 50px;
+			height:34px;
+		}
+		#add:hover{
+			background-color: cyan;
+		}
+		.list{
+			list-style: none;
+			margin-top: 30px;
+			width: 660px;
+
+			/*height: 800px;*/
+			/*border:1px solid #000;*/
+		}
+		.list li{
+			margin-top: 5px;
+			height: 35px;
+			width : 660px;
+			line-height: 35px;
+			border-bottom: 1px solid #333;
+		}
+		.list li span{
+			float: left;
+		}
+
+		.list li a{
+			float: right;
+			margin: 0 10px;
+		}
+
+		.clearfix:before .clearfix:after{
+			content: "";
+			display: table;
+		}
+		.clearfix:after:{
+			clear:both;
+		}
+
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#add').click(function(event) {
+				/* Act on the event */
+				$item = $('#text').val();
+				if($item==''){
+					alert('请输入内容');
+				}
+				else{
+					$('.list').append("<li><span>" + $item + "</span><a href='#' class='del'>删除</a><a href='#' class='up'>⬆</a><a href='#'  class='down'>⬇</a></li>");
+					$('#text').val('');
+				}
+				
+			});
+			 
+			$('.list').delegate('.up', 'click', function(event) {
+				alert('up');
+				alert($(this).parent().index());
+				if($(this).parent().index()==0){
+					alert("到顶了");
+				}
+				else{
+					$(this).parent().insertBefore($(this).parent().prev());
+				}
+			});
+			// $('.up').click(function(event) {
+			// 	/* Act on the event */
+			// 	alert('up');
+			// 	alert($(this).parent().index());
+			// 	if($(this).parent().index()==0){
+			// 		alert("到顶了");
+			// 	}
+			// 	else{
+			// 		$(this).parent().insertBefore($(this).parent().prev());
+			// 	}
+			// });
+			$('.list').delegate('.down', 'click', function(event) {
+				$len = $('.list li').length-1;
+				// 判断条件也可以是$(this).parent().next==0)
+				//表示没选中li，返回的是0
+				if($(this).parent().index()==$len){
+					alert("到底了");
+				}
+				else{
+					$(this).parent().insertAfter($(this).parent().next());
+				}
+			});
+
+			$('.list').delegate('.del', 'click', function(event) {
+				$(this).parent().remove();
+			});
+			// $('.down').click(function(event) {
+			// 	/* Act on the event */
+			// 	alert('down');
+			// 	$len = $('.list li').length-1;
+			// 	if($(this).parent().index()==$len){
+			// 		alert("到底了");
+			// 	}
+			// 	else{
+			// 		$(this).parent().insertAfter($(this).parent().next());
+			// 	}
+			// });
+		})
+	</script>
+</head>
+<body>
+	<div class="box_con">
+		<h2>To Do list</h2>
+		<input type="text" id="text">
+		<input type="button" name="" id="add" value="增加">
+		<ul class="list clearfix">
+			<li>
+				<span>学习python</span>
+				<a href="#" class="del">删除</a>
+				<a href="#" class="up">⬆</a>
+				<a href="#" class="down">⬇</a>
+			</li>
+			<li>
+				<span>学习JavaScript</span>
+				<a href="#" class="del">删除</a>
+				<a href="#" class="up">⬆</a>
+				<a href="#" class="down">⬇</a>
+			</li>
+			<li>
+				<span>学习css</span>
+				<a href="#" class="del">删除</a>
+				<a href="#" class="up">⬆</a>
+				<a href="#" class="down">⬇</a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

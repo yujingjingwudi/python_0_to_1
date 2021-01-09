@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    默认转义：
+    <h1>{{content}}</h1><br />
+    第一种不转义方法:
+    <h1>{{content|safe}}</h1><br />
+    第二种不转义方法
+    {% autoescape off %}
+    <h1>{{content}}</h1>
+    {% endautoescape %}
+</body>
+</html>

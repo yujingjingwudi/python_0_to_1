@@ -1,0 +1,8 @@
+
+ORM:ORM是Django的核心思想，“object relational mapping"，对象关系映射，简称ORM
+ORM可是实现通过操作类完成对数据库的存储修改
+self.xxx        xxx不能是变量，xxx仅仅只能起分辨作用，类似 import xxx
+
+
+getattr()
+setattr()

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load filters %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .style1{
+            background-color: #00FF00;
+        }
+        .style2{
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+<!--        {% for book in books %}-->
+<!--            {% if book.id <= 3 %}-->
+<!--                <li class="style1">{{forloop.counter}}&#45;&#45;{{book.btitle}}&#45;&#45;{{book.bpub_date|date:'y年-m月-d日'}}</li>-->
+<!--            {% else %}-->
+<!--                <li class="style2">{{forloop.counter}}&#45;&#45;{{book.btitle}}&#45;&#45;{{book.bpub_date|date:'y年-m月-d日'}}</li>-->
+<!--            {% endif %}-->
+<!--        {% endfor %}-->
+        {% for book in books %}
+            {% if book.id|mod:2 %}
+                <li class="style1">{{forloop.counter}}--{{book.btitle}}--{{book.bpub_date|date:'y年-m月-d日'}}</li>
+            {% else %}
+                <li class="style2">{{forloop.counter}}--{{book.btitle}}--{{book.bpub_date|date:'y年-m月-d日'}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    default过滤器<br />
+    {{content|default:'hello'}}
+</body>
+</html>

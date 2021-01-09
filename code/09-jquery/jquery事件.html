@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		.Box{
+			height: 200px;
+			width: 200px;
+			background-color: cyan;
+		}
+		.box{
+			/*position: fixed;
+			top:300px;*/
+			height: 100px;
+			width: 100px;
+			background-color: gold;
+		}
+		.Box1{
+			margin-top: 30px;
+			height: 200px;
+			width: 200px;
+			background-color: cyan;
+		}
+		.box1{
+			/*position: fixed;
+			top:300px;*/
+			height: 100px;
+			width: 100px;
+			background-color: gold;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.Box').mouseover(function(event) {
+				/* Act on the event */
+				alert("移入");
+			});
+			// $('.box').mouseover(function(event) {
+			// 	 Act on the event 
+			// 	alert("移入");
+			// });
+			
+
+			$('.Box1').mouseenter(function(event) {
+				/* Act on the event */
+				alert("移入");
+			});
+			//  
+			$(window).resize(function(event) {
+				/* Act on the event */
+				document.title=$(window).width();
+			});
+			
+		})
+	</script>
+</head>
+<body>
+	<div class="Box">
+		<div class="box"></div>
+	</div>
+	<div class="Box1">
+		<div class="box1"></div>
+	</div>
+</body>
+</html>

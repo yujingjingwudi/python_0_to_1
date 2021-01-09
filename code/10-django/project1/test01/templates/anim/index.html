@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h4>图书内容如下:</h4>
+    <ul>
+        {% for pro in productions %}
+            <li><a href="/index/{{pro.id}}">{{pro.name}}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

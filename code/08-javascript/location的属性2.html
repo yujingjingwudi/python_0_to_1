@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			obody = document.getElementsByTagName('body');
+			obtn = document.getElementById('bili');
+			// alert(obody);
+			// alert(obtn);
+			alert(window.location.hash);
+			var scanshu = window.location.search;
+			var aa = scanshu.split('=')[1];
+			if (aa==1){
+				obody[0].style.backgroundColor = 'red';
+			}
+			else if (aa==2){
+				obody[0].style.backgroundColor = 'blue';
+			}
+			else if (aa==3){
+				obody[0].style.backgroundColor = 'cyan';
+			}
+			else if (aa==4){
+				obody[0].style.backgroundColor = 'green';
+			}
+			else if (aa==5){
+				obody[0].style.backgroundColor = 'pink';
+			}
+			obtn.onclick = function(){
+				window.location.href='http://www.bilibili.com';
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" name="btn1" id="bili" value="bilibili" />
+</body>
+</html>

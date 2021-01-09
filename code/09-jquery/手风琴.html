@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.box{
+			overflow: hidden;
+			height: 360px;
+			width:825px;
+			margin: 50px auto 0;
+			border-top: 1px solid #fff;
+			border-bottom: 1px solid #fff;
+		}
+		.box li{
+			position: absolute;
+			float: left;
+			width: 741px;
+			height: 360px;
+		}
+		.box ul{
+			list-style: none;
+			width: 10000px;
+			position: relative;
+		}
+		.box span{
+			text-indent: 10px;
+			color: #fff;
+			cursor: pointer;
+			border-right: 1px solid #fff;
+			background-color: orange;
+			letter-spacing: 5px;
+			float: left;
+			display: block;
+			height: 360px;
+			width: 20px;
+			writing-mode: vertical-lr;
+		}
+		.box img{
+			height: 360px;
+			width: 720px;
+		}
+		li:nth-child(1) span{
+			background-color: red;
+		}
+		li:nth-child(1){
+			left:0;
+		}
+		li:nth-child(2) span{
+			background-color: orange;
+		}
+		li:nth-child(2){
+			left:741px;
+		}
+		li:nth-child(3) span{
+			background-color: yellow;
+		}
+		li:nth-child(3){
+			left:762px;
+		}
+		li:nth-child(4) span{
+			background-color: green;
+		}
+		li:nth-child(4){
+			left:783px;
+		}
+		li:nth-child(5) span{
+			background-color: cyan;
+		}
+		li:nth-child(5){
+			left:804px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery/jquery-1.12.4.min.js"></script>
+	<!-- 动画分为三部分进行，第一部分是选择的标签 -->
+	<!-- 第二部分是标签左边的，第三部分是标签右边的 -->
+	<script type="text/javascript">
+		$(function(){
+			var $li = $('li');
+			$li.click(function(event) {
+				/* Act on the event */
+				$(this).prevAll().each(function(index, el) {
+					$(this).animate({
+					'left': 21*$(this).index()},
+					800);					
+				})
+
+				$(this).animate({
+					'left': 21*$(this).index()},
+					800);
+                
+				$(this).nextAll().each(function(index, el) {
+					$(this).animate({
+						'left': 825-21*(5-$(this).index()),
+						},800);					
+				});
+			});
+		})
+	</script>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li><span>我是柯学家</span><img src="./timg.png" alt=""></li>
+			<li><span>我喜欢雷姆</span><img src="./timg.png" alt=""></li>
+			<li><span>我喜欢三玖</span><img src="./timg.png" alt=""></li>
+			<li><span>我喜欢露易丝</span><img src="./timg.png" alt=""></li>
+			<li><span>我喜欢艾拉</span><img src="./timg.png" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

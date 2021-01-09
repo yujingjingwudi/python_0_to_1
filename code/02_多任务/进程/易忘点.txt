@@ -1,0 +1,23 @@
+1. 进程：
+ - 程序是死的，进程是活的，是操作系统分配资源的基本单位
+ - 进程的状态：就绪态，执行态，堵塞态
+ - import multiprocessing
+ - 进程时资源分配的单位，线程是操作系统调度的单位
+ - 消息队列是一种进程间通信的方法，multiprocessing.queue
+   queue.put;queue.full;queue.empty;queue.get
+ - Queue.get在队列中没有数据的时候会堵塞在这里，直到有新的数据进入，然后取出
+ - queue.get_nowait不会堵塞
+ - queue.put当队列装满时，会堵塞
+ - 当需要创建的进程过多时，或者不确定需要多少个进程时可以采用进程池重复利用进程
+
+2. 进程池
+ - import multiprocessing.pool
+ - pool.apply_async(fun,(,parms))
+ - pool.close关闭进程池
+ - pool.join堵塞进程池，等待所有进程池完成任务
+ - __file__属性保存着模块存放路径
+ - 进程池中子程序产生异常不会反馈是程序崩掉
+
+3.os
+ - os.mkdir创建一个文件夹
+ - os.listdir将文件夹内的所有文件名存放到一个列表中

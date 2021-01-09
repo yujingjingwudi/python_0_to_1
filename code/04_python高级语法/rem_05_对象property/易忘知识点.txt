@@ -1,0 +1,71 @@
+类：
+class Province(object):
+    country = "中国"  # 类属性
+    def __init__(self,name):
+        self.name = name)  # 实例属性
+
+实例化顺序：
+1.调用__new__     -------->创建对象,申请内存空间
+2.调用__init__    -------->对刚刚申请的空间，进行初始化
+
+类对象在内存中只保存一个
+实例对象在每个对象中都要保存一份
+每个类对象都会有一个__class__属性
+
+实例方法，静态方法和类方法
+实例方法：由对象调用；只有一个self参数，执行实例方法时，自动将该对象的方法赋给self
+类方法：由类调用，至少一个cls参数，执行类方法时，自动将调用该方法的类赋值给cls
+静态方法：由类调用无默认参数
+def fuc1(self):
+@classmethod　　　　　＃　这个东西叫做装饰器
+def fuc2(cls):
+@staticmethod
+def fuc3()
+
+改变类属性的方法，
+1.class1.__class.country
+2.类方法，self指向类对象，cls指向实例属性
+
+类方法和静态方法既可以被类对象调用,也可以被实例对象调用
+
+Property属性：
+class Foo:
+    def func(self):
+        pass
+
+    @property
+    def prop(self):　＃ 只有self一个参数，调用的时候不加括号
+        pass
+    # 必须得有一个返回值
+    # property可读性更高，直接返回一个值（不带括号），让开发者感觉是直接调用了一个属性值
+    # property是封装的体现
+
+Property属性的创建方式
+1.装饰器
+经典类创建方式：
+@property
+def abc(self):
+    return xxx
+新式类方式：
+新式类有三种方法
+@property
+def abc(self):
+    return xxx:
+@abc.setter(self):
+    self.abc = xxx
+@abc.deleter
+    del self.abc
+
+经典类和新式类：
+python2.x默认都是经典类，显示继承object才是新式类
+python3.x默认都是新式类，
+
+2.类属性：
+class Foo:
+    def get_bar(self):
+        return 'laowang'
+    BAR = property(get_bar) # property可以接受四个参数 （get_bar,set_bar,del_bar,"description")
+
+property,能够简化   调用者在获取数据时的流程 ,
+通常在项目中可以作为获取私有方法的一种途径，能在获取的过程中添加一层过滤器
+

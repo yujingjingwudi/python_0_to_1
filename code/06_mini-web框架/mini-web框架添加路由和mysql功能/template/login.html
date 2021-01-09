@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>新浪微博</title>
+	<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<link rel="icon" type="image/x-icon" href="static/images/logo.png">
+</head>
+<body>
+<div class="box">
+	<nav>
+		<div class="header mc">
+			<div class="nav_l">
+				<a href="" class="l"> <img src="static/images/WB_logo.png"></a>
+				<form class="l">
+					<input type="text" placeholder="大家正在搜: 易烊千玺说别碰我">
+					<i class="layui-icon layui-icon-search"></i>
+				</form>
+			</div>
+			<div class="nav_r r">
+				<a href="" style="color: #ff6500;"><i class="layui-icon layui-icon-home"></i> 首页</a>
+				<a href=""><i class="layui-icon layui-icon-video"></i> 视频
+                   <span class="icon a_span"></span>    
+				</a>
+				<a href=""><i class="layui-icon layui-icon-add-circle-fine"></i> 发现</a>
+				<a href=""><i class="layui-icon layui-icon-theme"></i> 游戏</a>
+				<a href=""><i class="layui-icon layui-icon-user"></i> 某大大</a>
+				<a href=""><i class="layui-icon layui-icon-more-vertical"></i></a>
+				<a href=""><i class="layui-icon layui-icon-chat"></i>
+                    <span class="msg a_span br">36</span>   
+				</a>
+				<a href=""><i class="layui-icon layui-icon-set"></i></a>
+				<a href="" style="color: #ff6500;"><i class="layui-icon layui-icon-survey"></i></a>
+			</div>
+		</div>
+
+	</nav>
+	 <div class="clear"></div> 
+<!-- 导航结束  主题开始 -->
+    <div class="content mc">
+    	<div class="l mr content_l" style="">
+    		<div class="l content_nav">
+    			<a href="">首页
+                   <span class="icon c_span"></span>
+    			</a>
+    			<a href="">我的收藏</a>
+    			<a href="">我的赞</a>
+    			<hr>
+    			<small><a href=""><i class=" layui-icon layui-icon-tree"></i> 热门微博
+                    <span class="icon c_span"></span>
+    			</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-video"></i> 热门视频</a></small>
+    			<hr>
+    			<small><a href=""><i class=" layui-icon layui-icon-star"></i> 好友圈</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-rate-solid"></i> 特别关注</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-note"></i> v+微博</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-camera"></i> 美图摄影</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-circle"></i> 同事</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-circle"></i> 同学</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-circle"></i> 名人明星</a></small>
+    			<small><a href=""><i class=" layui-icon layui-icon-circle"></i> 搞笑</a></small>
+    			<small><a href="" id="va" class="br">展开
+    					<span class="icon c_span"></span>
+    			</a></small>
+    			<hr>
+    		</div>
+    		<div class="l content_msg">
+    		   <div class="text">
+    		   	  <p><b>有什么新鲜事告诉大家？</b> <small class="r small">因春节要参加各种聚会，女子租个2万的包回老家>> 热门微博</small></p>
+    		   	  <div class="br textarea" contenteditable="true" id="text"></div>
+    		   	  <p class="menu">
+    		   	  	<span class="emoji"><i class=" layui-icon layui-icon-face-smile-b" style="color: #FED901;"></i> 表情</span>
+    		   	  	<span><i class="layui-icon layui-icon-video" style="color: #55E30F;"></i> 视频</span>
+    		   	  	<span><i style="color: #55E30F;"> # </i>话题</span>
+    		   	  	<span><i class="layui-icon layui-icon-chart" style="color: #ff6500;"></i> 头条文章</span>
+    		   	  	<span><i class="layui-icon layui-icon-more"></i></span>
+    		   	  	<button id="but" class="layui-btn layui-btn-warm r">  发 布  </button>
+    		   	  	<span class="r">公布 <i class="layui-icon layui-icon-down"></i></span>	
+                    
+                    <div class="myEmoji layui-tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this"><a href="#set">预设</a></li>
+                            <li><a href="#hot"> 热门</a></li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show" id="set" >
+                                <div class="emoji_1"></div>
+                            </div>
+                            <div class="layui-tab-item " id="hot" >
+                                <div class="emoji_2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+    		   	  </p> 
+    		   </div>
+               <div class="item_msg br">
+                    <div class="message mc">
+                        <div class="use">
+                            <img src="static/images/8.jpg">
+                            <b>某大大</b><small class="date">1分钟前</small>
+                        </div>
+                        <div class="msg_content">
+                            <p>小时候总梦想仗剑走天涯，长大了却无时不想家。在异乡奋斗的你，曾为理想背井离乡，但别忘记家的方向。</p>
+                            <img src="static/images/bg1.jpg" class="mypic">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="msg_menu">
+                        <span class="s_b"><i class="layui-icon layui-icon-star"></i>收藏</span>
+                        <span class="s_b"><i class="layui-icon layui-icon-share"></i>666</span>
+                        <span class="s_b"><i class="layui-icon layui-icon-reply-fill"></i>1266</span>
+                        <span><i class="layui-icon layui-icon-praise"></i>1000</span>
+                    </div>
+               </div>
+    		</div>
+             <div class="clear"></div>
+    	</div>
+    	<div class="l mr content_r">
+            <div class="user br">
+                <div class="user_pic">
+                    <img src="static/images/8.jpg">
+                    <p>某大大 <i class="layui-icon layui-icon-star-fill"></i> <small class="lv">lv36</small></p>
+                    <ul>
+                        <li class="s_b"><b>308</b><br><small>关注</small></li>
+                        <li class="s_b"><b>188</b><br><small>粉丝</small></li>
+                        <li><b>208</b><br><small>微博</small></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clear"></div> 
+    </div>
+</div>
+<script src="static/js/jquery-3.1.0.js"></script>
+<script src="static/layui/layui.js"></script>
+<script type="text/javascript">
+   layui.use('element',function(){
+   var element=layui.element;
+ })
+    $(function(){
+     //添加表情包1
+     console.log( );
+     for(var i=1; i<60; i++) {
+        $('.emoji_1').append("<img src='static/images/f"+i+".png' style='width:30px;height:30px;'>")   
+
+     } 
+     for(var i=1; i<61; i++) {
+        $('.emoji_2').append("<img src='static/images/h"+i+".png' style='width:30px;height:30px; '>")   
+
+     } 
+    // 点击表情出现表情框
+    $('.emoji').click(function(){
+        $('.myEmoji').show()
+    })
+     $('.text').mouseleave(function(){
+        $('.myEmoji').hide()
+    })
+
+     //将表情添加到输入框
+     $('.myEmoji img').each(function(){
+        $(this).click(function(){
+            var url=$(this)[0].src // 通过下标来找到点击的emoji
+            // console.log(url)
+            $('#text').append("<img src='"+url+"' style='width:25px;height:25px; '>")
+        })
+
+     })
+      $('#but').click(function(){
+       if($('#text').html().length==0){
+        alert('请输入内容')
+        return
+       }
+      var date=new Date()
+       var yy=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+"  "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();//将日期以指定格式输出
+       var content=$('#text').html()
+       // $('.text').after($(".item_msg").clone())//复制一个节点包括它的子节点
+       $('.text').after($('<div class="item_msg br" ><div class="message mc" ><div class="use"><img src="static/images/8.jpg" class="mr"><b> 某大大 </b> <small class="date" style="color:#999">'+yy+'</small></div><div class="msg_content"><p>'+content+'</p></div></div><div class="clear"></div><hr class="hr"><div class="msg_menu"><span class="s_b"><i class="layui-icon layui-icon-star"></i> 收藏</span><span class="s_b"><i class="layui-icon layui-icon-share"></i> 666</span><span class="s_b"><i class="layui-icon layui-icon-reply-fill"></i> 1260</span><span><i class="layui-icon layui-icon-praise"></i> 1000</span></div></div>'))
+       $('#text').html('')
+    })
+     //键盘输入内容
+      $('#text').keyup(function(){
+         var len=$(this).text().length
+         $('.small').text("已输入"+len+"个字") 
+        if(len==0){
+            $('.small').text("因春节要参加各种聚会，女子租个2万的包回老家>> 热门微博") 
+        }
+      })
+     // 点击按钮发送内容
+    
+    //放大或缩小预览图片
+    $('.mypic').click(function(){
+        if($(this).height()==200){
+            $(this).height(250)
+        }else{
+            $(this).height(200) 
+        }
+    })
+
+    })
+</script>
+</body>
+</html>
